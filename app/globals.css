@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+body::-webkit-scrollbar{
+    width: 1px;
+    height: 1px;
+    background-color: green;
+}

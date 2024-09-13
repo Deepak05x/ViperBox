@@ -1,8 +1,12 @@
+import dynamic from "next/dynamic"
+
+const Navbar = dynamic(()=>import("../components/Navbar"))
+
 const Home = () => {
   return (
-    <div>
-  
-    </div>
+    <main>
+        <Navbar />
+    </main>
   )
 }
 

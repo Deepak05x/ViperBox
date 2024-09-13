@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import {Sen} from 'next/font/google'
 import "./globals.css";
-import dynamic from "next/dynamic"
 
-const Navbar = dynamic(()=>import("../components/Navbar"))
+
+
 
 const sen = Sen({
   subsets: ["latin"],
@@ -26,7 +26,6 @@ export default function RootLayout({
       <body
         className={`${sen.className} min-h-screen w-full scroll-smooth box-border antialiased`}
       >
-        <Navbar />
         {children}
       </body>
     </html>
