@@ -5,7 +5,7 @@ const Navbar = dynamic(()=>import("../components/Navbar"))
 const Home = () => {
   return (
     <main>
-        <Navbar />
+        <Navbar /> 
     </main>
   )
 }
