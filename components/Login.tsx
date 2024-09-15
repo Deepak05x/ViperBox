@@ -6,7 +6,7 @@ import { Input } from "./ui/input";
 
 const Login: React.FC = () => {
     return (
-        <div className="flex flex-col rounded-3xl items-center md:px-16 sm:px-12 ssm:px-8 py-16 gap-12 bg-white drop-shadow-2xl shadow-black">
+        <section className="flex flex-col rounded-3xl items-center md:px-16 sm:px-12 ssm:px-8 py-16 gap-12 bg-white drop-shadow-2xl shadow-black">
             <h1 className="sm:text-3xl ssm:text-2xl font-medium">
                 Already have an <span className="text-green">account?</span>
             </h1>
@@ -34,7 +34,7 @@ const Login: React.FC = () => {
                     </Link>
                 </p>
             </div>
-        </div>
+        </section>
     );
 };
 

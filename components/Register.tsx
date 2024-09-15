@@ -23,7 +23,7 @@ const Register: React.FC = () => {
             <Button variant={"destructive"}>Register</Button>
             <div>
                 <p className="text-lg flex md:flex-row flex-col gap-4 items-center">
-                    Have an account?{" "}
+                    Have an account?
                     <Link href={"/login"}>
                         <Button>Login</Button>
                     </Link>
