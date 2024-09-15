@@ -5,9 +5,8 @@ export const GET = async (): Promise<NextResponse> => {
     try {
         const session = await auth(); 
         return NextResponse.json(session); 
-    } catch (error: unknown) { 
-        console.error(error); 
-        return new NextResponse(null, { status: 500 });
+    } catch (error: unknown) {  
+        return NextResponse.json("There is a error in fetching session", {status : 500})
     }
 };
 

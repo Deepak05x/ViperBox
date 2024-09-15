@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sen } from "next/font/google";
 import "./globals.css";
+import SessionProvider from "@/context/SessionProvider";
 
 const sen = Sen({
     subsets: ["latin"],
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${sen.className} min-h-screen w-full scroll-smooth box-border antialiased bg-gray-50`}>{children}</body>
+            <body className={`${sen.className} min-h-screen w-full scroll-smooth box-border antialiased bg-gray-50`}>
+                <SessionProvider>{children}</SessionProvider>
+            </body>
         </html>
     );
 }
