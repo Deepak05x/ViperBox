@@ -17,7 +17,6 @@ const UserSchema = new Schema<IUser>({
     email:{
         type: String,
         required: true,
-        unique: true
     },
     image:{
         type:String
@@ -34,6 +33,6 @@ const UserSchema = new Schema<IUser>({
     timestamps: true
 })
 
-const User : Model<IUser> = models.User || model<IUser>('User', UserSchema)
+const UserModel : Model<IUser> = models.User || model<IUser>('User', UserSchema)
 
-export default User
+export default UserModel

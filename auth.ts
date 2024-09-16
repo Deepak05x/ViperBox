@@ -1,8 +1,8 @@
-import NextAuth, { Account, Session } from 'next-auth'
+import NextAuth, { Account, Session, User } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import connectToDb from './lib/db'
-import User from './models/UserModel'
+import UserModel from './models/UserModel'
 import {AdapterUser} from "next-auth/adapters"
 
 
@@ -35,11 +35,11 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
         })
     ],
     callbacks:{
-        async signIn({user, account}){
+        async signIn({user, account} : {account : Account | null , user: User | AdapterUser}){
             await connectToDb()
-            const existingUser = await User.findOne({email : user.email})
+            const existingUser = await UserModel.findOne({email : user.email, provider:account?.provider})
             if(!existingUser){
-                await User.create({
+                await UserModel.create({
                     name: user.name,
                     email : user.email,
                     image: user.image,
@@ -51,7 +51,7 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
         },
         async session({session} : {session: Session}){
             if(session.user?.email){
-                const dbUser = await User.findOne({email: session.user.email})
+                const dbUser = await UserModel.findOne({email: session.user.email})
                 if(dbUser){
                     session.user.id = dbUser._id.toString()
                 }else{
