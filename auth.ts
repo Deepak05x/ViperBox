@@ -1,8 +1,9 @@
-import NextAuth from 'next-auth'
+import NextAuth, { Account, Session } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import connectToDb from './lib/db'
 import User from './models/UserModel'
+import {AdapterUser} from "next-auth/adapters"
 
 
 export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
@@ -34,7 +35,7 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
         })
     ],
     callbacks:{
-        async signIn({user}){
+        async signIn({user, account}){
             await connectToDb()
             const existingUser = await User.findOne({email : user.email})
             if(!existingUser){
@@ -42,11 +43,13 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
                     name: user.name,
                     email : user.email,
                     image: user.image,
+                    provider: account?.provider,
+                    providerId: account?.providerAccountId 
                 })
             }
             return true
         },
-        async session({session}){
+        async session({session} : {session: Session}){
             if(session.user?.email){
                 const dbUser = await User.findOne({email: session.user.email})
                 if(dbUser){

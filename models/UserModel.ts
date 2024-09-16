@@ -4,7 +4,9 @@ interface IUser extends Document{
     name: string,
     email: string,
     image?: string,
-    _id: Types.ObjectId
+    _id: Types.ObjectId,
+    provider: string,
+    providerId: string,
 }
 
 const UserSchema = new Schema<IUser>({
@@ -20,6 +22,14 @@ const UserSchema = new Schema<IUser>({
     image:{
         type:String
     },
+    provider:{
+        type : String,
+        required : true,
+    },
+    providerId:{
+        type: String,
+        required: true,
+    }
 }, {
     timestamps: true
 })
