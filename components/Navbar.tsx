@@ -21,6 +21,8 @@ const Navbar: React.FC = () => {
         setMenu((prev) => !prev);
     };
 
+    console.log(session)
+
     return (
         <nav className="flex fixed  z-30 w-full items-center justify-between py-6 px-12 bg-white drop-shadow-xl">
             <Logo />

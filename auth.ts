@@ -1,4 +1,4 @@
-import NextAuth, { Session } from 'next-auth'
+import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import connectToDb from './lib/db'
@@ -46,7 +46,7 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
             }
             return true
         },
-        async session({session} : {session : Session}){
+        async session({session}){
             if(session.user?.email){
                 const dbUser = await User.findOne({email: session.user.email})
                 if(dbUser){
