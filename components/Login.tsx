@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { Input } from "./ui/input";
+import { doLogin } from "@/app/action";
 
 const Login: React.FC = () => {
     return (
@@ -15,14 +16,14 @@ const Login: React.FC = () => {
                 <Input id="password" type={"password"} placeholder="Enter your password" />
             </form>
             <Button variant={"destructive"}>Log in</Button>
-            <form className="flex  items-center ">
-                <Button variant={"none"}>
+            <form className="flex  items-center" action={doLogin}>
+                <Button variant={"none"} name="action" value={"google"} type="submit">
                     <Image src={"/google.svg"} alt="google" width={35} height={35} />
                 </Button>
-                <Button variant={"none"}>
+                <Button variant={"none"} name="action" value={"github"} type="submit">
                     <Image src={"/github.svg"} alt="google" width={35} height={35} />
                 </Button>
-                <Button variant={"none"}>
+                <Button variant={"none"} name="action" value={"twitter"} type="submit">
                     <Image src={"/twitter.svg"} alt="google" width={35} height={35} />
                 </Button>
             </form>

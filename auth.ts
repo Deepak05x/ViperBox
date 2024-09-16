@@ -1,9 +1,11 @@
-import NextAuth from 'next-auth'
+import NextAuth, { Session } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
+import connectToDb from './lib/db'
+import User from './models/UserModel'
 
 
-export const {handlers:{GET, POST}, signIn, signOut, auth} = NextAuth({
+export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
     session:{
         strategy: 'jwt'
     },
@@ -31,4 +33,30 @@ export const {handlers:{GET, POST}, signIn, signOut, auth} = NextAuth({
             }
         })
     ],
+    callbacks:{
+        async signIn({user}){
+            await connectToDb()
+            const existingUser = await User.findOne({email : user.email})
+            if(!existingUser){
+                await User.create({
+                    name: user.name,
+                    email : user.email,
+                    image: user.image,
+                })
+            }
+            return true
+        },
+        async session({session} : {session : Session}){
+            if(session.user?.email){
+                const dbUser = await User.findOne({email: session.user.email})
+                if(dbUser){
+                    session.user.id = dbUser._id.toString()
+                }else{
+                    console.warn("User not found in the database")
+                }
+            }
+            return session 
+        } 
+            
+    }
 })

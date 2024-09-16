@@ -1,6 +1,8 @@
 "use client";
 
+import { doLogout } from "@/app/action";
 import { useState, useEffect, createContext } from "react";
+import { useRouter } from "next/navigation";
 
 interface User {
     email: string;
@@ -11,6 +13,7 @@ interface User {
 
 interface SessionData {
     user: User;
+    handleLogout: () => void;
 }
 
 interface Session {
@@ -20,16 +23,21 @@ interface Session {
     email: string;
 }
 
-const InitialSession: Session = {
-    id: "",
-    username: "",
-    image: "",
-    email: "",
+const IntitialValues: SessionContextType = {
+    session: null,
+    handleLogout: async () => {},
 };
 
-export const SessionContext = createContext<Session | null>(InitialSession);
+interface SessionContextType {
+    session: Session | null;
+    handleLogout: () => Promise<void>;
+}
+
+export const SessionContext = createContext<SessionContextType>(IntitialValues);
 
 const SessionProvider = ({ children }: { children: React.ReactNode }) => {
+    const router = useRouter();
+
     const [session, setSession] = useState<Session | null>(null);
 
     const fetchSession = async (): Promise<void> => {
@@ -52,11 +60,17 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
         }
     };
 
+    const handleLogout = async (): Promise<void> => {
+        await doLogout();
+        setSession(null);
+        router.push("/");
+    };
+
     useEffect(() => {
         fetchSession();
     }, []);
 
-    return <SessionContext.Provider value={session}>{children}</SessionContext.Provider>;
+    return <SessionContext.Provider value={{ session, handleLogout }}>{children}</SessionContext.Provider>;
 };
 
 export default SessionProvider;
