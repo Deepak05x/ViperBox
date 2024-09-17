@@ -9,7 +9,7 @@ interface IUser extends Document{
     providerId: string,
 }
 
-const UserSchema = new Schema<IUser>({
+const SocialUserSchema = new Schema<IUser>({
     name:{
         type: String,
         required: true
@@ -33,6 +33,6 @@ const UserSchema = new Schema<IUser>({
     timestamps: true
 })
 
-const UserModel : Model<IUser> = models.User || model<IUser>('User', UserSchema)
+const SocialUserModel : Model<IUser> = models.Social || model<IUser>('Social', SocialUserSchema)
 
-export default UserModel
+export default SocialUserModel
