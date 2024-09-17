@@ -4,15 +4,20 @@ interface IUser extends Document{
     name: string,
     email: string,
     image?: string,
+    provider?: string,
+    providerId?: string,
+    password?: string,
     _id: Types.ObjectId,
-    provider: string,
-    providerId: string,
 }
 
-const SocialUserSchema = new Schema<IUser>({
+const UserSchema = new Schema<IUser>({
     name:{
         type: String,
         required: true
+    },
+    password:{
+        type: String,
+        select: false
     },
     email:{
         type: String,
@@ -23,16 +28,15 @@ const SocialUserSchema = new Schema<IUser>({
     },
     provider:{
         type : String,
-        required : true,
+        default:"credentials"
     },
     providerId:{
         type: String,
-        required: true,
     }
 }, {
     timestamps: true
 })
 
-const SocialUserModel : Model<IUser> = models.Social || model<IUser>('Social', SocialUserSchema)
+const UserModel : Model<IUser> = models.User || model<IUser>('User', UserSchema)
 
-export default SocialUserModel
+export default UserModel
