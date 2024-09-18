@@ -4,18 +4,8 @@ import GithubProvider from 'next-auth/providers/github'
 import connectToDb from './lib/db'
 import UserModel from './models/UserModel'
 import {AdapterUser} from "next-auth/adapters"
-import CredentialsProvider from 'next-auth/providers/credentials'
+import Credentials from "next-auth/providers/credentials"
 import bcrypt from "bcrypt"; 
-
-
-interface Credentials{
-    email: string,
-    password: string
-}
-
-
-
-
 
 export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
     session:{
@@ -44,8 +34,38 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
                 }
             }
         }),
-        CredentialsProvider({
+        Credentials({
+            credentials:{
+                email:{ type: "email" },
+                password: { type: "password" },
+            },
+            authorize : async(credentials)=>{
 
+                const email = credentials.email as string 
+                const password = credentials.password as string 
+
+                if(credentials === null) return null
+
+                try {
+
+                    await connectToDb()
+
+                    const user = await UserModel.findOne({email: email, provider:"credentials"})
+                    if(!user){
+                        console.log("user not found")
+                        return null
+                    }
+                    const isMatch = await bcrypt.compare(password, user.password)
+                    if(!isMatch){
+                        console.log("Password is not matching")
+                        return null
+                    }
+                    return user
+                } catch (error) {
+                    console.log("Authorization error for the note", error)
+                    return null
+                }
+            }
         })
             
     ],

@@ -13,4 +13,15 @@ export const doLogout = async() : Promise<void>=>{
 }
 
 
+export const doCredentials = async(formData: FormData): Promise<void>=>{
+    const email = formData.get("email") as string
+    const password = formData.get("password") as string
+    await signIn("credentials",{
+        redirect: false,
+        callbackUrl: "/",
+        email,
+        password,
+    })
+}
+
 

@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { Input } from "./ui/input";
-import { doLogin } from "@/app/action";
+import { doCredentials, doLogin } from "@/app/action";
 
 const Login: React.FC = () => {
     return (
@@ -11,11 +11,13 @@ const Login: React.FC = () => {
             <h1 className="sm:text-3xl ssm:text-2xl font-medium">
                 Already have an <span className="text-green">account?</span>
             </h1>
-            <form action="" className="flex flex-col gap-8 w-full">
+            <form action={doCredentials} className="flex items-center flex-col gap-8 w-full">
                 <Input id="email" placeholder="Enter your email" />
                 <Input id="password" type={"password"} placeholder="Enter your password" />
+                <Button variant={"destructive"} className="mt-4" type="submit">
+                    Log in
+                </Button>
             </form>
-            <Button variant={"destructive"}>Log in</Button>
             <form className="flex gap-4 items-center" action={doLogin}>
                 <Button variant={"none"} name="action" value={"google"} type="submit">
                     <Image src={"/google.svg"} alt="google" width={35} height={35} />
