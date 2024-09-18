@@ -32,7 +32,9 @@ const Register: React.FC = () => {
             if (response.ok) {
                 router.push("/login");
             }
-        } catch (error) {}
+        } catch (error) {
+            throw new Error("Register function is not working");
+        }
     };
 
     return (
@@ -41,9 +43,9 @@ const Register: React.FC = () => {
                 Don&apos;t have an <span className="text-green">account?</span>
             </h1>
             <form onSubmit={handleSubmit} className="flex flex-col items-center gap-8 w-full">
-                <Input id="name" name="name" placeholder="Enter your name" />
-                <Input id="email" name="email" placeholder="Enter your email" />
-                <Input id="password" name="password" type={"password"} placeholder="Enter your password" />
+                <Input id="name" name="name" placeholder="Enter your name" required />
+                <Input id="email" name="email" placeholder="Enter your email" required />
+                <Input id="password" name="password" type={"password"} placeholder="Enter your password" required />
                 <div className="flex items-center gap-2 justify-center">
                     <input type="checkbox" id="checkbox" />
                     <label htmlFor="checkbox" className="text-sm">

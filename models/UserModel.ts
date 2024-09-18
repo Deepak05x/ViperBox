@@ -3,9 +3,9 @@ import { Schema, models, model, Model, Document, Types } from "mongoose";
 export interface IUser extends Document{
     name: string,
     email: string,
-    image?: string,
+    image: string,
     provider: string,
-    providerId?: string,
+    providerId: string,
     password: string,
     _id: Types.ObjectId,
 }

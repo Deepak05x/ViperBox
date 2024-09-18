@@ -15,6 +15,8 @@ interface Credentials{
 
 
 
+
+
 export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
     session:{
         strategy: 'jwt'
@@ -43,21 +45,9 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
             }
         }),
         CredentialsProvider({
-            async authorize(credentials : Credentials | undefined){
-                try{
-                    const user = UserModel.findOne({
-                        email: credentials?.email,
-                        provider : "credentials",
-                    })
-                    if(user){
-                        const isMatch = await bcrypt.compare
-                    }
-                }catch(error){
-                    throw new Error("Error with credentials")
-                }
-            }
 
         })
+            
     ],
     callbacks:{
         async signIn({user, account} : {account : Account | null , user: User | AdapterUser}){
