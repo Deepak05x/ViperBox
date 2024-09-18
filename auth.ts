@@ -5,6 +5,13 @@ import connectToDb from './lib/db'
 import UserModel from './models/UserModel'
 import {AdapterUser} from "next-auth/adapters"
 import CredentialsProvider from 'next-auth/providers/credentials'
+import bcrypt from "bcrypt"; 
+
+
+interface Credentials{
+    email: string,
+    password: string
+}
 
 
 
@@ -34,6 +41,22 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
                     response_type: "code",
                 }
             }
+        }),
+        CredentialsProvider({
+            async authorize(credentials : Credentials | undefined){
+                try{
+                    const user = UserModel.findOne({
+                        email: credentials?.email,
+                        provider : "credentials",
+                    })
+                    if(user){
+                        const isMatch = await bcrypt.compare
+                    }
+                }catch(error){
+                    throw new Error("Error with credentials")
+                }
+            }
+
         })
     ],
     callbacks:{
