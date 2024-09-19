@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Sen } from "next/font/google";
+import { Recursive } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "@/context/SessionProvider";
 
-const sen = Sen({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700", "800"],
-});
+const recursive = Recursive({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "Viper Box",
@@ -20,7 +17,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${sen.className} min-h-screen w-full scroll-smooth box-border antialiased bg-gray-50`}>
+            <body className={`${recursive.className} min-h-screen w-full scroll-smooth box-border antialiased bg-gray-50`}>
                 <SessionProvider>{children}</SessionProvider>
             </body>
         </html>

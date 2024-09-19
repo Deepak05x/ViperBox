@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { SessionContext } from "@/context/SessionProvider";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Logo = dynamic(() => import("@/components/Logo"));
 
@@ -21,12 +22,23 @@ const Navbar: React.FC = () => {
         setMenu((prev) => !prev);
     };
 
-    console.log(session)
-
     return (
-        <nav className="flex fixed  z-30 w-full items-center justify-between py-6 px-12 bg-white drop-shadow-xl">
+        <motion.nav
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            className="flex w-full items-center justify-between py-6 px-12 bg-white drop-shadow-xl"
+        >
             <Logo />
-            <section className="md:flex items-center gap-8 text-lg font-medium hidden">
+
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+                viewport={{ once: true }}
+                className="md:flex items-center gap-8 text-lg font-medium hidden"
+            >
                 {session ? (
                     <>
                         <Image src={session?.image || "/google.svg"} alt="profile" className="rounded-full" width={40} height={40} />
@@ -49,12 +61,23 @@ const Navbar: React.FC = () => {
                         </Link>
                     </Button>
                 )}
-            </section>
+            </motion.section>
+
             <section className="flex md:hidden">
                 {menu ? (
                     <>
-                        <IoMdClose className="text-3xl relative" onClick={() => handleToggle()} />
-                        <div className="absolute bg-black/20 flex flex-col gap-12 px-12 py-8 top-20 right-10 items-center justify-center">
+                        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }} viewport={{ once: true }}>
+                            <IoMdClose className="text-3xl relative" onClick={() => handleToggle()} />
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, ease: "easeInOut" }}
+                            key="menuContent"
+                            viewport={{ once: true }}
+                            className="absolute bg-black/20 backdrop-blur-xl flex flex-col gap-12 px-12 py-8 top-32 rounded-md right-10 items-center justify-center"
+                        >
                             <Button variant={"destructive"}>
                                 <Link href={"/login"} className="cursor-pointer ">
                                     Login
@@ -68,13 +91,15 @@ const Navbar: React.FC = () => {
                                 <p>Create Case</p>
                                 <FaArrowRight className="text-sm" />
                             </Button>
-                        </div>
+                        </motion.div>
                     </>
                 ) : (
-                    <IoMdMenu className="text-3xl" onClick={() => handleToggle()} />
+                    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }} viewport={{ once: true }}>
+                        <IoMdMenu className="text-3xl" onClick={() => handleToggle()} />
+                    </motion.div>
                 )}
             </section>
-        </nav>
+        </motion.nav>
     );
 };
 

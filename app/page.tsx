@@ -1,13 +1,15 @@
-import dynamic from "next/dynamic"
+import dynamic from "next/dynamic";
 
-const Navbar = dynamic(()=>import("../components/Navbar"))
+const Navbar = dynamic(() => import("../components/Navbar"));
+const Title = dynamic(() => import("@/components/Home/Title"));
 
 const Home = () => {
-  return (
-    <main>
-        <Navbar /> 
-    </main>
-  )
-}
+    return (
+        <main className="flex flex-col">
+            <Navbar />
+            <Title />
+        </main>
+    );
+};
 
-export default Home
+export default Home;

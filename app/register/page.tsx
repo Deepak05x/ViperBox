@@ -7,7 +7,7 @@ const Logo = dynamic(() => import("@/components/Logo"));
 const RegisterPage: React.FC = () => {
     return (
         <>
-            <section className="py-[2rem] px-12">
+            <section className="py-6 px-12">
                 <Logo />
             </section>
             <section className="flex items-center justify-center py-12  sm:px-6 ssm:px-4">
