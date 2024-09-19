@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 
 const mongodb = process.env.MONGO_DB_URI
 
+console.log(mongodb)
+
 if(!mongodb){
     throw new Error("Mongo DB Uri is not recogonized")
 }

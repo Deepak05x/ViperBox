@@ -5,7 +5,7 @@ import connectToDb from './lib/db'
 import UserModel from './models/UserModel'
 import {AdapterUser} from "next-auth/adapters"
 import Credentials from "next-auth/providers/credentials"
-import bcrypt from "bcrypt"; 
+import bcrypt from "bcryptjs"; 
 
 export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
     session:{
@@ -44,17 +44,22 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
                 const email = credentials.email as string 
                 const password = credentials.password as string 
 
+                console.log("Email: ", email);
+                console.log("Password: ", password);
+
                 if(credentials === null) return null
 
                 try {
 
                     await connectToDb()
 
-                    const user = await UserModel.findOne({email: email, provider:"credentials"})
+                    const user = await UserModel.findOne({email: email, provider:"credentials"}).select("+password")
                     if(!user){
                         console.log("user not found")
                         return null
                     }
+                    console.log(password)
+                    console.log(user.password)
                     const isMatch = await bcrypt.compare(password, user.password)
                     if(!isMatch){
                         console.log("Password is not matching")
