@@ -76,14 +76,14 @@ const Navbar: React.FC = () => {
                             transition={{ duration: 0.6, ease: "easeInOut" }}
                             key="menuContent"
                             viewport={{ once: true }}
-                            className="absolute bg-black/20 backdrop-blur-xl flex flex-col gap-12 px-12 py-8 top-32 rounded-md right-10 items-center justify-center"
+                            className="absolute bg-black backdrop-blur-xl flex flex-col gap-12 px-12 py-8 top-32 rounded-md right-10 items-center justify-center"
                         >
                             <Button variant={"destructive"}>
                                 <Link href={"/login"} className="cursor-pointer ">
                                     Login
                                 </Link>
                             </Button>
-                            <p className="cursor-pointer text-lg font-medium flex items-center gap-1">
+                            <p className="cursor-pointer text-lg font-medium text-white flex items-center gap-1">
                                 Dashboard
                                 <PiShootingStarFill className="text-yellow-500" />
                             </p>
