@@ -1,16 +1,31 @@
+"use client";
+
 import React from "react";
 import { TbStarFilled } from "react-icons/tb";
 import Image from "next/image";
 import { Check } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Customer = () => {
     return (
         <section className="bg-gray-100 py-[10rem] items-center flex flex-col px-12 gap-24 justify-center">
-            <h1 className="sm:text-5xl lg:text-start text-center ssm:text-[2.85rem] font-bold">
+            <motion.h1
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+                viewport={{ once: true }}
+                className="sm:text-5xl lg:text-start text-center ssm:text-[2.85rem] font-bold"
+            >
                 What Our <span className="text-green">Customer</span> Says
-            </h1>
+            </motion.h1>
             <div className="flex lg:flex-row flex-col lg:gap-0 gap-24 items-center justify-center">
-                <div className="flex flex-col lg:gap-8 gap-5 items-center justify-center">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col lg:gap-8 gap-5 items-center justify-center"
+                >
                     <div className="flex text-green text-lg gap-1">
                         <TbStarFilled />
                         <TbStarFilled />
@@ -32,8 +47,14 @@ const Customer = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="flex flex-col lg:gap-8 gap-5 items-center justify-center">
+                </motion.div>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col lg:gap-8 gap-5 items-center justify-center"
+                >
                     <div className="flex text-green  text-lg gap-1">
                         <TbStarFilled />
                         <TbStarFilled />
@@ -55,7 +76,7 @@ const Customer = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );
