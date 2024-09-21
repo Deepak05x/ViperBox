@@ -38,13 +38,6 @@ const Register: React.FC = () => {
         }
     };
 
-    const handleSubmission = () => {
-        const form = document.getElementById("register") as HTMLFormElement | null;
-        if (form) {
-            form.submit();
-        }
-    };
-
     return (
         <motion.section
             initial={{ opacity: 0 }}

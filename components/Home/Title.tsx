@@ -14,6 +14,7 @@ const Title = () => {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8, ease: "easeInOut", delay: 0.3 }}
+                    viewport={{ once: true }}
                     className="flex flex-col sm:gap-2 gap-0 sm:text-5xl ssm:text-[2.85rem] ssm:leading-[3.5rem] sm:leading-0  lg:text-start text-center font-bold"
                 >
                     Your Image on a
@@ -24,12 +25,19 @@ const Title = () => {
                 <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
                     className="flex flex-col text-[1rem] lg:text-start text-center text-black/70 font-semibold"
                 >
                     Capture your favorite memories with your own case.<span>Viperbox allows you to protect your memories</span>
                 </motion.p>
-                <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }} className="flex flex-col gap-2">
+                <motion.section
+                    initial={{ opacity: 0 }}
+                    viewport={{ once: true }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
+                    className="flex flex-col gap-2"
+                >
                     <div className="flex sm:flex-row flex-col items-center gap-2">
                         <Check className="text-2xl text-green" />
                         <p className="font-bold text-lg  ssm:text-center">High-quality, durable material</p>
@@ -46,6 +54,7 @@ const Title = () => {
                 <motion.section
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeInOut", delay: 0.9 }}
                     className="flex lg:flex-row flex-col lg:gap-0 gap-4 items-start"
                 >
@@ -68,7 +77,13 @@ const Title = () => {
                     </div>
                 </motion.section>
             </section>
-            <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }} className="flex  justify-center items-start">
+            <motion.section
+                initial={{ opacity: 0 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+                className="flex  justify-center items-start"
+            >
                 <Image
                     src={"/phone-template.png"}
                     alt="phone"
