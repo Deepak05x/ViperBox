@@ -9,7 +9,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { SessionContext } from "@/context/SessionProvider";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Logo = dynamic(() => import("@/components/Logo"));
 
