@@ -7,10 +7,14 @@ import { Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { FaArrowRight } from "react-icons/fa";
+import { useContext } from "react";
+import { SessionContext } from "@/context/SessionProvider";
 
 const Phone = dynamic(() => import("@/components/Phone"));
 
 const Working = () => {
+    const { session } = useContext(SessionContext);
+
     return (
         <section className="py-24 flex flex-col gap-24 items-center justify-center sm:px-12 ssm:px-8">
             <motion.h1
@@ -55,9 +59,15 @@ const Working = () => {
                 </div>
             </motion.div>
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.8, ease: "easeInOut" }} viewport={{ once: true }}>
-                <Button className="flex items-center gap-2">
-                    Create your case <FaArrowRight className="text-sm" />
-                </Button>
+                {session ? (
+                    <Button className="flex items-center gap-2">
+                        Create your case <FaArrowRight className="text-sm" />
+                    </Button>
+                ) : (
+                    <Button className="flex items-center gap-2" onClick={() => alert("Login To Access This Page")}>
+                        Create your case <FaArrowRight className="text-sm" />
+                    </Button>
+                )}
             </motion.div>
         </section>
     );
