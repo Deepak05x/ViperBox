@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const Customer = () => {
     return (
-        <section className="bg-gray-100 py-[10rem] items-center flex flex-col px-12 gap-24 justify-center">
+        <section className="bg-gray-100 py-24 items-center flex flex-col px-12 gap-24 justify-center">
             <motion.h1
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -51,7 +51,7 @@ const Customer = () => {
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.9 }}
                     viewport={{ once: true }}
                     className="flex flex-col lg:gap-8 gap-5 items-center justify-center"
                 >

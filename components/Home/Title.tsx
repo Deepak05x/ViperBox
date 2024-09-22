@@ -78,10 +78,10 @@ const Title = () => {
                 </motion.section>
             </section>
             <motion.section
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 0, x: 50 }}
                 viewport={{ once: true }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeInOut", delay: 1 }}
                 className="flex  justify-center items-start"
             >
                 <Image
