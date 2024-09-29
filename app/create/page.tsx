@@ -9,7 +9,7 @@ const page: React.FC = () => {
         <main>
             <Navbar />
             <section>
-                <Intro borderColor={"green"} />
+                <Intro borderColor={"border-green"} />
             </section>
         </main>
     );
