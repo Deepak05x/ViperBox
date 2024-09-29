@@ -6,7 +6,7 @@ const Customer = dynamic(() => import("@/components/Home/Customer"));
 const Working = dynamic(() => import("@/components/Home/Working"));
 const Footer = dynamic(() => import("@/components/Home/Footer"));
 
-const Home = () => {
+const Home: React.FC = () => {
     return (
         <main className="flex flex-col">
             <Navbar />

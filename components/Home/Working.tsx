@@ -9,6 +9,7 @@ import { Button } from "../ui/button";
 import { FaArrowRight } from "react-icons/fa";
 import { useContext } from "react";
 import { SessionContext } from "@/context/SessionProvider";
+import Link from "next/link";
 
 const Phone = dynamic(() => import("@/components/Phone"));
 
@@ -60,9 +61,11 @@ const Working = () => {
             </motion.div>
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.8, ease: "easeInOut" }} viewport={{ once: true }}>
                 {session ? (
-                    <Button className="flex items-center gap-2">
-                        Create your case <FaArrowRight className="text-sm" />
-                    </Button>
+                    <Link href={"/create"}>
+                        <Button className="flex items-center gap-2">
+                            Create your case <FaArrowRight className="text-sm" />
+                        </Button>
+                    </Link>
                 ) : (
                     <Button className="flex items-center gap-2" onClick={() => alert("Login To Access This Page")}>
                         Create your case <FaArrowRight className="text-sm" />
