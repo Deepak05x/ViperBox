@@ -49,10 +49,12 @@ const Navbar: React.FC = () => {
                             Dashboard
                             <PiShootingStarFill className="text-yellow-500" />
                         </p>
-                        <Button className="flex items-center gap-1 justify-center">
-                            <p>Create Case</p>
-                            <FaArrowRight className="text-sm" />
-                        </Button>
+                        <Link href={"/create"}>
+                            <Button className="flex items-center gap-1 justify-center">
+                                <p>Create Case</p>
+                                <FaArrowRight className="text-sm" />
+                            </Button>
+                        </Link>
                     </>
                 ) : (
                     <Button>
@@ -87,14 +89,16 @@ const Navbar: React.FC = () => {
                                 Dashboard
                                 <PiShootingStarFill className="text-yellow-500" />
                             </p>
-                            <Button className="flex items-center gap-1 justify-center">
-                                <p>Create Case</p>
-                                <FaArrowRight className="text-sm" />
-                            </Button>
+                            <Link href={"/create"}>
+                                <Button className="flex items-center gap-1 justify-center">
+                                    <p>Create Case</p>
+                                    <FaArrowRight className="text-sm" />
+                                </Button>
+                            </Link>
                         </motion.div>
                     </>
                 ) : (
-                    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }} viewport={{ once: true }}>
+                    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }} viewport={{ once: true }}>
                         <IoMdMenu className="text-3xl" onClick={() => handleToggle()} />
                     </motion.div>
                 )}

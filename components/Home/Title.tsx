@@ -26,7 +26,7 @@ const Title = () => {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.4 }}
                     className="flex flex-col text-[1rem] lg:text-start text-center text-black/70 font-semibold"
                 >
                     Capture your favorite memories with your own case.<span>Viperbox allows you to protect your memories</span>
@@ -35,7 +35,7 @@ const Title = () => {
                     initial={{ opacity: 0 }}
                     viewport={{ once: true }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
                     className="flex flex-col gap-2"
                 >
                     <div className="flex sm:flex-row flex-col items-center gap-2">
@@ -55,7 +55,7 @@ const Title = () => {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.9 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.6 }}
                     className="flex lg:flex-row flex-col lg:gap-0 gap-4 items-start"
                 >
                     <div className="flex lg:ml-0 ml-2">
@@ -81,7 +81,7 @@ const Title = () => {
                 initial={{ opacity: 0, x: 50 }}
                 viewport={{ once: true }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeInOut", delay: 1 }}
+                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
                 className="flex  justify-center items-start"
             >
                 <Image

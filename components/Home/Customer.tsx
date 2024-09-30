@@ -12,7 +12,7 @@ const Customer = () => {
             <motion.h1
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.3 }}
                 viewport={{ once: true }}
                 className="sm:text-5xl lg:text-start text-center ssm:text-[2.85rem] font-bold"
             >
@@ -22,7 +22,7 @@ const Customer = () => {
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.4 }}
                     viewport={{ once: true }}
                     className="flex flex-col lg:gap-8 gap-5 items-center justify-center"
                 >
@@ -51,7 +51,7 @@ const Customer = () => {
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.9 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
                     viewport={{ once: true }}
                     className="flex flex-col lg:gap-8 gap-5 items-center justify-center"
                 >
