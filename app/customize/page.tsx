@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 const Intro = dynamic(() => import("@/components/Create/Intro"));
 const Navbar = dynamic(() => import("@/components/Navbar"));
 
-const Customize = () => {
+const Customize: React.FC = () => {
     return (
         <main>
             <Navbar />
