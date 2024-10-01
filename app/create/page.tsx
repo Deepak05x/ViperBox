@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 const Intro = dynamic(() => import("@/components/Create/Intro"));
 const Navbar = dynamic(() => import("@/components/Navbar"));
 
-const page: React.FC = () => {
+const Create: React.FC = () => {
     return (
         <main>
             <Navbar />
@@ -15,4 +15,4 @@ const page: React.FC = () => {
     );
 };
 
-export default page;
+export default Create;
