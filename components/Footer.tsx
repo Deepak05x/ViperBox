@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
     return (
-        <div className="bg-gray-100 text-sm sm:px-32 px-12 py-8 flex ssm:flex-col md:flex-row gap-2 items-center justify-between">
+        <div className="bg-black/90 text-white text-sm sm:px-32 px-12 py-8 flex ssm:flex-col md:flex-row gap-2 items-center justify-between">
             <motion.h1
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}

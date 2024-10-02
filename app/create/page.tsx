@@ -4,15 +4,17 @@ import dynamic from "next/dynamic";
 const Intro = dynamic(() => import("@/components/Create/Intro"));
 const Navbar = dynamic(() => import("@/components/Navbar"));
 const Hero = dynamic(() => import("@/components/Create/Hero"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 const Create: React.FC = () => {
     return (
         <main>
             <Navbar />
-            <section className="flex flex-col items-center justify-center">
+            <section className="flex flex-col items-center justify-center py-24 gap-24">
                 <Intro borderColor={"border-green"} />
                 <Hero />
             </section>
+            <Footer />
         </main>
     );
 };
