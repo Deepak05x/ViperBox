@@ -6,9 +6,9 @@ const Navbar = dynamic(() => import("@/components/Navbar"));
 
 const Summary: React.FC = () => {
     return (
-        <main>
+        <main className="flex flex-col">
             <Navbar />
-            <section>
+            <section className="flex flex-col items-center justify-center">
                 <Intro borderColor={"border-green"} />
             </section>
         </main>
