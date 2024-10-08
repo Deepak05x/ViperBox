@@ -1,7 +1,11 @@
 import React from "react";
 import CreateProvider from "@/context/CreateProvider";
 
-const CreateLayout = ({ children }: { children: React.ReactNode }) => {
+interface Props {
+    children: React.ReactNode;
+}
+
+const CreateLayout: React.FC<Props> = ({ children }) => {
     return <CreateProvider>{children}</CreateProvider>;
 };
 

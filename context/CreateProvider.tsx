@@ -13,10 +13,10 @@ const CreateContextIntital = {
     setColor: () => {},
 };
 
-const CreateContext = createContext<CreateContextType>(CreateContextIntital);
+export const CreateContext = createContext<CreateContextType>(CreateContextIntital);
 
 const CreateProvider = ({ children }: { children: ReactNode }) => {
-    const [color, setColor] = useState<string>("");
+    const [color, setColor] = useState<string>("black");
 
     return <CreateContext.Provider value={{ color, setColor }}>{children}</CreateContext.Provider>;
 };

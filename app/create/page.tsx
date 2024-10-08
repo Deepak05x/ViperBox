@@ -1,9 +1,9 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-const Intro = dynamic(() => import("@/components/Create/Intro"));
+const Intro = dynamic(() => import("@/components/create/Intro"));
 const Navbar = dynamic(() => import("@/components/Navbar"));
-const Hero = dynamic(() => import("@/components/Create/Hero"));
+const Hero = dynamic(() => import("@/components/create/Hero"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
 const Create: React.FC = () => {
