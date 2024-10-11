@@ -6,6 +6,7 @@ import { CreateContext } from "@/context/CreateProvider";
 import dynamic from "next/dynamic";
 import { CreateContextType } from "@/context/CreateProvider";
 import { Button } from "../ui/button";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const Phone = dynamic(() => import("../Phone"));
 
@@ -25,7 +26,7 @@ const colors = [
 ];
 
 const Hero: React.FC = () => {
-    const { colorName, setColorName, colorType, setColorType } = useContext<CreateContextType>(CreateContext);
+    const { colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel } = useContext<CreateContextType>(CreateContext);
 
     const handleColorClick = (name: string, type: string): void => {
         setColorName(name);
@@ -34,7 +35,7 @@ const Hero: React.FC = () => {
 
     return (
         <section className="flex flex-row w-full items-center  justify-center h-[80vh] relative">
-            <section className="bg-gray-100 h-full flex flex-col gap-12 items-center justify-center px-[13rem] py-8 border-2 border-gray-300 rounded-xl">
+            <section className="bg-gray-50 h-full flex flex-col gap-12 items-center justify-center px-[13rem] py-8 border-2 border-dashed border-gray-300 rounded-xl">
                 <Button variant={"default"} className="order-2">
                     Upload
                 </Button>
@@ -43,7 +44,7 @@ const Hero: React.FC = () => {
             <section className="flex flex-col overflow-y-auto bg-gray-50 h-full px-16 gap-8 ">
                 <h1 className="text-lg font-bold">Customize your case</h1>
                 <hr />
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 font-medium">
                     <p>Color: {colorName}</p>
                     <div className="flex flex-row items-center gap-4">
                         {colors.map((item, index) => (
@@ -56,6 +57,17 @@ const Hero: React.FC = () => {
                     </div>
                 </div>
                 <hr />
+                <div className="flex flex-col gap-2 font-medium">
+                    <p>Model</p>
+                    <select name="" id="" className="border-2 border-gray-100">
+                        <option value="">
+                            IPhone 15
+                            <span className="text-lg">
+                                <IoMdArrowDropdown className="text-lg" />
+                            </span>
+                        </option>
+                    </select>
+                </div>
             </section>
         </section>
     );

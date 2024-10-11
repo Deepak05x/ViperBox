@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${recursive.className} min-h-screen w-full scroll-smooth box-border antialiased bg-gray-50`}>
+            <body className={`${recursive.className} min-h-screen w-full scroll-smooth box-border antialiased `}>
                 <SessionProvider>{children}</SessionProvider>
             </body>
         </html>

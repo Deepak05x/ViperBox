@@ -6,15 +6,19 @@ import { useState, createContext } from "react";
 export interface CreateContextType {
     colorName: string;
     colorType: string;
+    phoneModel: string;
     setColorName: React.Dispatch<React.SetStateAction<string>>;
     setColorType: React.Dispatch<React.SetStateAction<string>>;
+    setPhoneModel: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CreateContextIntital: CreateContextType = {
     colorName: "",
     colorType: "",
+    phoneModel: "",
     setColorName: () => {},
     setColorType: () => {},
+    setPhoneModel: () => {},
 };
 
 export const CreateContext = createContext<CreateContextType>(CreateContextIntital);
@@ -22,8 +26,9 @@ export const CreateContext = createContext<CreateContextType>(CreateContextIntit
 const CreateProvider = ({ children }: { children: ReactNode }) => {
     const [colorName, setColorName] = useState<string>("Black");
     const [colorType, setColorType] = useState<string>("bg-black");
+    const [phoneModel, setPhoneModel] = useState<string>("IPhone 15");
 
-    return <CreateContext.Provider value={{ colorName, setColorName, colorType, setColorType }}>{children}</CreateContext.Provider>;
+    return <CreateContext.Provider value={{ colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel }}>{children}</CreateContext.Provider>;
 };
 
 export default CreateProvider;

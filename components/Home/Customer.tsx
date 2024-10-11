@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const Customer = () => {
     return (
-        <section className="bg-gray-100 py-24 items-center flex flex-col px-12 gap-24 justify-center">
+        <section className="bg-gray-50 border-t border-b border-dashed border-gray-300 py-24 items-center flex flex-col px-12 gap-24 justify-center">
             <motion.h1
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
