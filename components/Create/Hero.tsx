@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CreateContext } from "@/context/CreateProvider";
 import dynamic from "next/dynamic";
 import { CreateContextType } from "@/context/CreateProvider";
@@ -33,6 +33,17 @@ const Hero: React.FC = () => {
         setColorType(type);
     };
 
+    const [drop, setDrop] = useState<boolean>(false);
+
+    const handleDropDown = (): void => {
+        setDrop((prev) => !prev);
+    };
+
+    const handleModelSelect = (name: string): void => {
+        setPhoneModel(name);
+        setDrop(false);
+    };
+
     return (
         <section className="flex flex-row w-full items-center  justify-center h-[80vh] relative">
             <section className="bg-gray-50 h-full flex flex-col gap-12 items-center justify-center px-[13rem] py-8 border-2 border-dashed border-gray-300 rounded-xl">
@@ -41,9 +52,9 @@ const Hero: React.FC = () => {
                 </Button>
                 <Phone imgSrc="" className={`w-60 ${colorType} order-1`} />
             </section>
-            <section className="flex flex-col overflow-y-auto bg-gray-50 h-full px-16 gap-8 ">
-                <h1 className="text-lg font-bold">Customize your case</h1>
-                <hr />
+            <section className="flex  flex-col overflow-y-auto items-start  h-full px-16 py-4 gap-8 ">
+                <h1 className="text-2xl font-bold">Customize your case</h1>
+                <div className="w-full bg-gray-500 h-[1px]"></div>
                 <div className="flex flex-col gap-4 font-medium">
                     <p>Color: {colorName}</p>
                     <div className="flex flex-row items-center gap-4">
@@ -56,17 +67,38 @@ const Hero: React.FC = () => {
                         ))}
                     </div>
                 </div>
-                <hr />
-                <div className="flex flex-col gap-2 font-medium">
+                <div className="w-full bg-gray-500 h-[1px]"></div>
+                <div className="flex flex-col gap-4 font-medium w-full">
                     <p>Model</p>
-                    <select name="" id="" className="border-2 border-gray-100">
-                        <option value="">
-                            IPhone 15
-                            <span className="text-lg">
-                                <IoMdArrowDropdown className="text-lg" />
+                    <div className="relative">
+                        <div onClick={() => handleDropDown()} className="border-2  border-gray-200 rounded-lg text-sm px-4 py-2 cursor-pointer w-full flex items-center justify-between">
+                            {phoneModel}
+                            <span>
+                                <IoMdArrowDropdown />
                             </span>
-                        </option>
-                    </select>
+                        </div>
+                        {drop && (
+                            <div className="absolute left-0 right-0 bg-white border-2 border-gray-200 mt-1 z-30 text-sm">
+                                <div className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect("IPhone 15")}>
+                                    IPhone 15
+                                </div>
+                                <div className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect("IPhone 14")}>
+                                    IPhone 14
+                                </div>
+                                <div className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect("IPhone 13")}>
+                                    IPhone 13
+                                </div>
+                                <div className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect("IPhone 12")}>
+                                    IPhone 12
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+                <div className="w-full bg-gray-500 h-[1px]"></div>
+                <div className="flex flex-col gap-4">
+                    <p>Material</p>
+                    <div></div>
                 </div>
             </section>
         </section>
