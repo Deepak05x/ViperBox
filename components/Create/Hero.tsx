@@ -40,6 +40,17 @@ const phones = [
     },
 ];
 
+const material = [
+    {
+        name: "Silicone",
+        cost: "+$5",
+    },
+    {
+        name: "Plastic",
+        cost: "+$2",
+    },
+];
+
 const Hero: React.FC = () => {
     const { colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel } = useContext<CreateContextType>(CreateContext);
 
@@ -48,6 +59,7 @@ const Hero: React.FC = () => {
         setColorType(type);
     };
 
+    const [border, setBorder] = useState<boolean>(false);
     const [drop, setDrop] = useState<boolean>(false);
 
     const handleDropDown = (): void => {
@@ -58,6 +70,10 @@ const Hero: React.FC = () => {
         setPhoneModel(name);
         setDrop(false);
     };
+
+    const handleBorder = () : void=>{
+        setBorder((prev) => !prev)
+    }
 
     return (
         <section className="flex flex-row w-full items-center  justify-center h-[80vh] relative">
@@ -95,7 +111,7 @@ const Hero: React.FC = () => {
                         {drop && (
                             <div className="absolute left-0 right-0 bg-white border-2 border-gray-200 mt-1 z-30 text-sm">
                                 {phones.map((item, index) => (
-                                    <div className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect(item.name)}>
+                                    <div key={index} className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect(item.name)}>
                                         {item.name}
                                     </div>
                                 ))}
@@ -104,9 +120,15 @@ const Hero: React.FC = () => {
                     </div>
                 </div>
                 <div className="w-full bg-gray-500 h-[1px]"></div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 w-full">
                     <p>Material</p>
-                    <div></div>
+                    <div className="flex flex-col text-sm gap-4">
+                        {material.map((item, index) => (
+                            <div key={index} className={`border-2 ${border ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`} onClick={() => handleBorder()}>
+                                {item.name} <span>{item.cost}</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
         </section>
