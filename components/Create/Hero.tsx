@@ -25,6 +25,21 @@ const colors = [
     },
 ];
 
+const phones = [
+    {
+        name: "IPhone 15",
+    },
+    {
+        name: "IPhone 14",
+    },
+    {
+        name: "IPhone 13",
+    },
+    {
+        name: "IPhone 12",
+    },
+];
+
 const Hero: React.FC = () => {
     const { colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel } = useContext<CreateContextType>(CreateContext);
 
@@ -79,18 +94,11 @@ const Hero: React.FC = () => {
                         </div>
                         {drop && (
                             <div className="absolute left-0 right-0 bg-white border-2 border-gray-200 mt-1 z-30 text-sm">
-                                <div className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect("IPhone 15")}>
-                                    IPhone 15
-                                </div>
-                                <div className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect("IPhone 14")}>
-                                    IPhone 14
-                                </div>
-                                <div className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect("IPhone 13")}>
-                                    IPhone 13
-                                </div>
-                                <div className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect("IPhone 12")}>
-                                    IPhone 12
-                                </div>
+                                {phones.map((item, index) => (
+                                    <div className="px-4 py-2 cursor-pointer hover:bg-gray-200" onClick={() => handleModelSelect(item.name)}>
+                                        {item.name}
+                                    </div>
+                                ))}
                             </div>
                         )}
                     </div>
