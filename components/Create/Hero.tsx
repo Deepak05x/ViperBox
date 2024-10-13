@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
         setColorType(type);
     };
 
-    const [border, setBorder] = useState<boolean>(false);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [drop, setDrop] = useState<boolean>(false);
 
     const handleDropDown = (): void => {
@@ -71,8 +71,8 @@ const Hero: React.FC = () => {
         setDrop(false);
     };
 
-    const handleBorder = () : void=>{
-        setBorder((prev) => !prev)
+    const handleBorder = (index : number) : void=>{
+        setActiveIndex(index === activeIndex ? null : index)
     }
 
     return (
@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
                     <p>Material</p>
                     <div className="flex flex-col text-sm gap-4">
                         {material.map((item, index) => (
-                            <div key={index} className={`border-2 ${border ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`} onClick={() => handleBorder()}>
+                            <div key={index} className={`border-2 ${activeIndex === index ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`} onClick={() => handleBorder(index)}>
                                 {item.name} <span>{item.cost}</span>
                             </div>
                         ))}
