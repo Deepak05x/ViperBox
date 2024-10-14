@@ -8,6 +8,10 @@ export interface CreateContextType {
     colorType: string;
     phoneModel: string;
     material: string;
+    totalMoney: number;
+    finish: string;
+    setFinish: React.Dispatch<React.SetStateAction<string>>;
+    setTotalMoney: React.Dispatch<React.SetStateAction<number>>;
     setColorName: React.Dispatch<React.SetStateAction<string>>;
     setColorType: React.Dispatch<React.SetStateAction<string>>;
     setPhoneModel: React.Dispatch<React.SetStateAction<string>>;
@@ -19,6 +23,10 @@ const CreateContextIntital: CreateContextType = {
     colorType: "",
     phoneModel: "",
     material: "",
+    totalMoney: 0,
+    finish: "",
+    setFinish: () => {},
+    setTotalMoney: () => {},
     setColorName: () => {},
     setColorType: () => {},
     setPhoneModel: () => {},
@@ -32,8 +40,14 @@ const CreateProvider = ({ children }: { children: ReactNode }) => {
     const [colorType, setColorType] = useState<string>("bg-black");
     const [phoneModel, setPhoneModel] = useState<string>("IPhone 15");
     const [material, setMaterial] = useState<string>("");
+    const [finish, setFinish] = useState<string>("");
+    const [totalMoney, setTotalMoney] = useState<number>(0);
 
-    return <CreateContext.Provider value={{ colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel, material, setMaterial }}>{children}</CreateContext.Provider>;
+    return (
+        <CreateContext.Provider value={{ colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel, material, setMaterial, totalMoney, setTotalMoney, finish, setFinish }}>
+            {children}
+        </CreateContext.Provider>
+    );
 };
 
 export default CreateProvider;

@@ -67,7 +67,8 @@ const finishes = [
 ];
 
 const Hero: React.FC = () => {
-    const { colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel, setMaterial, material } = useContext<CreateContextType>(CreateContext);
+    const { colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel, setMaterial, material, totalMoney, setTotalMoney, finish, setFinish } =
+        useContext<CreateContextType>(CreateContext);
 
     const handleColorClick = (name: string, type: string): void => {
         setColorName(name);
@@ -77,6 +78,8 @@ const Hero: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [activeFinish, setActiveFinish] = useState<number | null>(null);
     const [drop, setDrop] = useState<boolean>(false);
+    const [previousMaterial, setPreviousMaterial] = useState<number>(0);
+    const [previousFinish, setPreviousFinish] = useState<number>(0);
 
     const handleDropDown = (): void => {
         setDrop((prev) => !prev);
@@ -87,20 +90,24 @@ const Hero: React.FC = () => {
         setDrop(false);
     };
 
-    const handleMaterial = (index: number, item: string): void => {
+    const handleMaterial = (index: number, name: string, price: number): void => {
         setActiveIndex(index === activeIndex ? null : index);
-        setMaterial(item);
+        setTotalMoney((prev) => prev - previousMaterial + price);
+        setPreviousMaterial(price);
+        setMaterial(name);
     };
 
-    const handleFinish = (index: number, item: string): void => {
+    const handleFinish = (index: number, name: string, price: number): void => {
         setActiveFinish(index);
+        setFinish(name);
+        setTotalMoney((prev) => prev + price);
     };
 
     console.log(material);
 
     return (
         <section className="flex flex-row w-full items-center  justify-center h-[80vh] relative">
-            <section className="bg-gray-50 h-full flex flex-col gap-12 items-center justify-center px-[13rem] py-8 border-2 border-dashed border-gray-300 rounded-xl">
+            <section className="bg-gray-50 h-full flex flex-col gap-12 items-center justify-center xl:px-[13rem] lg:px-[10rem] py-8 border-2 border-dashed border-gray-300 rounded-xl">
                 <Button variant={"default"} className="order-2">
                     Upload
                 </Button>
@@ -150,7 +157,7 @@ const Hero: React.FC = () => {
                             <div
                                 key={index}
                                 className={`border-2 ${activeIndex === index ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}
-                                onClick={() => handleMaterial(index, item.name)}
+                                onClick={() => handleMaterial(index, item.name, item.price)}
                             >
                                 {item.name} <span>{item.cost}</span>
                             </div>
@@ -165,7 +172,7 @@ const Hero: React.FC = () => {
                             <div
                                 key={index}
                                 className={`border-2 ${activeFinish === index ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}
-                                onClick={() => handleFinish(index, item.name)}
+                                onClick={() => handleFinish(index, item.name, item.price)}
                             >
                                 {item.name} <span>{item.cost}</span>
                             </div>
@@ -173,6 +180,10 @@ const Hero: React.FC = () => {
                     </div>
                 </div>
                 <div className="w-full bg-gray-500 h-[1px]">&nbsp;</div>
+                <div className="flex items-center justify-between w-full font-bold" onClick={() => setTotalMoney(0)}>
+                    <p>$ {totalMoney}.00</p>
+                    <Button>Continue</Button>
+                </div>
             </section>
         </section>
     );
