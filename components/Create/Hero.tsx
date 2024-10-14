@@ -17,11 +17,11 @@ const colors = [
     },
     {
         name: "Red",
-        color: "bg-red-500",
+        color: "bg-red-900",
     },
     {
         name: "Blue",
-        color: "bg-blue-500",
+        color: "bg-indigo-900",
     },
 ];
 
@@ -40,19 +40,34 @@ const phones = [
     },
 ];
 
-const material = [
+const materials = [
     {
         name: "Silicone",
-        cost: "+$5",
+        cost: "+ $1.00",
+        price: 2,
     },
     {
-        name: "Plastic",
-        cost: "+$2",
+        name: "Polycarbonate",
+        cost: "+ $5.00",
+        price: 5,
+    },
+];
+
+const finishes = [
+    {
+        name: "Smooth",
+        cost: "+ $1.00",
+        price: 1,
+    },
+    {
+        name: "Textured",
+        cost: "+ $5.00",
+        price: 5,
     },
 ];
 
 const Hero: React.FC = () => {
-    const { colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel } = useContext<CreateContextType>(CreateContext);
+    const { colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel, setMaterial, material } = useContext<CreateContextType>(CreateContext);
 
     const handleColorClick = (name: string, type: string): void => {
         setColorName(name);
@@ -60,6 +75,7 @@ const Hero: React.FC = () => {
     };
 
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [activeFinish, setActiveFinish] = useState<number | null>(null);
     const [drop, setDrop] = useState<boolean>(false);
 
     const handleDropDown = (): void => {
@@ -71,9 +87,16 @@ const Hero: React.FC = () => {
         setDrop(false);
     };
 
-    const handleBorder = (index : number) : void=>{
-        setActiveIndex(index === activeIndex ? null : index)
-    }
+    const handleMaterial = (index: number, item: string): void => {
+        setActiveIndex(index === activeIndex ? null : index);
+        setMaterial(item);
+    };
+
+    const handleFinish = (index: number, item: string): void => {
+        setActiveFinish(index);
+    };
+
+    console.log(material);
 
     return (
         <section className="flex flex-row w-full items-center  justify-center h-[80vh] relative">
@@ -83,10 +106,10 @@ const Hero: React.FC = () => {
                 </Button>
                 <Phone imgSrc="" className={`w-60 ${colorType} order-1`} />
             </section>
-            <section className="flex  flex-col overflow-y-auto items-start  h-full px-16 py-4 gap-8 ">
+            <section className="flex  flex-col overflow-y-auto items-start  h-full px-12 py-4 gap-8 ">
                 <h1 className="text-2xl font-bold">Customize your case</h1>
                 <div className="w-full bg-gray-500 h-[1px]"></div>
-                <div className="flex flex-col gap-4 font-medium">
+                <div className="flex flex-col gap-4 font-bold">
                     <p>Color: {colorName}</p>
                     <div className="flex flex-row items-center gap-4">
                         {colors.map((item, index) => (
@@ -98,8 +121,8 @@ const Hero: React.FC = () => {
                         ))}
                     </div>
                 </div>
-                <div className="w-full bg-gray-500 h-[1px]"></div>
-                <div className="flex flex-col gap-4 font-medium w-full">
+                <div className="w-full bg-gray-500 h-[1px]">&nbsp;</div>
+                <div className="flex flex-col gap-4 font-bold w-full">
                     <p>Model</p>
                     <div className="relative">
                         <div onClick={() => handleDropDown()} className="border-2  border-gray-200 rounded-lg text-sm px-4 py-2 cursor-pointer w-full flex items-center justify-between">
@@ -119,17 +142,37 @@ const Hero: React.FC = () => {
                         )}
                     </div>
                 </div>
-                <div className="w-full bg-gray-500 h-[1px]"></div>
-                <div className="flex flex-col gap-4 w-full">
+                <div className="w-full bg-gray-500 h-[1px]">&nbsp;</div>
+                <div className="flex flex-col gap-4 w-full font-bold">
                     <p>Material</p>
                     <div className="flex flex-col text-sm gap-4">
-                        {material.map((item, index) => (
-                            <div key={index} className={`border-2 ${activeIndex === index ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`} onClick={() => handleBorder(index)}>
+                        {materials.map((item, index) => (
+                            <div
+                                key={index}
+                                className={`border-2 ${activeIndex === index ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}
+                                onClick={() => handleMaterial(index, item.name)}
+                            >
                                 {item.name} <span>{item.cost}</span>
                             </div>
                         ))}
                     </div>
                 </div>
+                <div className="w-full bg-gray-500 h-[1px]">&nbsp;</div>
+                <div className="flex flex-col gap-4 w-full font-bold">
+                    <p>Finish</p>
+                    <div className="flex flex-col text-sm gap-4">
+                        {finishes.map((item, index) => (
+                            <div
+                                key={index}
+                                className={`border-2 ${activeFinish === index ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}
+                                onClick={() => handleFinish(index, item.name)}
+                            >
+                                {item.name} <span>{item.cost}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="w-full bg-gray-500 h-[1px]">&nbsp;</div>
             </section>
         </section>
     );
