@@ -43,7 +43,7 @@ const phones = [
 const materials = [
     {
         name: "Silicone",
-        cost: "+ $1.00",
+        cost: "+ $2.00",
         price: 2,
     },
     {
@@ -56,8 +56,8 @@ const materials = [
 const finishes = [
     {
         name: "Smooth",
-        cost: "+ $1.00",
-        price: 1,
+        cost: "+ $2.00",
+        price: 2,
     },
     {
         name: "Textured",
