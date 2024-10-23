@@ -41,7 +41,7 @@ const CreateProvider = ({ children }: { children: ReactNode }) => {
     const [phoneModel, setPhoneModel] = useState<string>("IPhone 15");
     const [material, setMaterial] = useState<string>("");
     const [finish, setFinish] = useState<string>("");
-    const [totalMoney, setTotalMoney] = useState<number>(0);
+    const [totalMoney, setTotalMoney] = useState<number>(5);
 
     return (
         <CreateContext.Provider value={{ colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel, material, setMaterial, totalMoney, setTotalMoney, finish, setFinish }}>
