@@ -98,7 +98,7 @@ const Hero: React.FC = () => {
     };
 
     const handleFinish = (index: number, name: string, price: number): void => {
-        setActiveFinish(index);
+        setActiveFinish(index === activeFinish ? null : index);
         setFinish(name);
         setTotalMoney((prev) => prev - previousFinish + price);
         setPreviousFinish(price);
