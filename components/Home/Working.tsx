@@ -61,7 +61,7 @@ const Working = () => {
             </motion.div>
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.8, ease: "easeInOut" }} viewport={{ once: true }}>
                 {session ? (
-                    <Link href={"/create"}>
+                    <Link href={"/configure/upload"}>
                         <Button className="flex items-center gap-2">
                             Create your case <FaArrowRight className="text-sm" />
                         </Button>

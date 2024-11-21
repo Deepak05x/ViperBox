@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Recursive } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "@/context/SessionProvider";
+import ConfigureProvider from "@/context/ConfigureProvider";
 
 const recursive = Recursive({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${recursive.className} min-h-screen w-full scroll-smooth box-border antialiased `}>
-                <SessionProvider>{children}</SessionProvider>
+                <SessionProvider>
+                    <ConfigureProvider>{children}</ConfigureProvider>
+                </SessionProvider>
             </body>
         </html>
     );
