@@ -48,15 +48,21 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
             }
             const sessionData: SessionData = await response.json();
 
-            const session: Session = {
-                username: sessionData.user.name,
-                image: sessionData.user.image || undefined,
-                id: sessionData.user.id,
-                email: sessionData.user.email,
-            };
-            setSession(session);
+            if (sessionData.user) {
+                const session: Session = {
+                    username: sessionData.user.name,
+                    image: sessionData.user.image || undefined,
+                    id: sessionData.user.id,
+                    email: sessionData.user.email,
+                };
+                setSession(session);
+            } else {
+                console.warn("No user found in session data");
+                setSession(null);
+            }
         } catch (error) {
             console.log("Error fetching session data:", error);
+            setSession(null);
         }
     };
 

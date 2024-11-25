@@ -89,16 +89,17 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
             }
             return true
         },
-        async session({session} : {session: Session}){
-            if(session.user?.email){
-                const dbUser = await UserModel.findOne({email: session.user.email})
-                if(dbUser){
-                    session.user.id = dbUser._id.toString()
-                }else{
-                    console.warn("User not found in the database")
-                }
+        async session({ session }) {
+        if (session.user?.email) {
+            const dbUser = await UserModel.findOne({ email: session.user.email });
+            if (dbUser) {
+                session.user.id = dbUser._id.toString();
+            } else {
+                console.warn("User not found in the database");
             }
-            return session 
-        }     
+        }
+        console.log("Session object:", session); // Add this to debug the session content
+        return session;
+    }     
     }
 })

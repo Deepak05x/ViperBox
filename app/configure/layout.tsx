@@ -7,10 +7,12 @@ const Steps = dynamic(() => import("@/components/configure/Steps"));
 
 const layout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className="flex flex-col justify-between min-h-screen">
+        <div className="flex flex-col justify-between min-h-screen w-full">
             <Navbar />
-            <Steps />
-            {children}
+            <div className="py-24">
+                <Steps />
+            </div>
+            <div className="flex flex-col gap-12 py-24 items-center w-full">{children}</div>
             <Footer />
         </div>
     );
