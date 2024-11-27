@@ -37,7 +37,7 @@ const upload: React.FC = () => {
     };
 
     return (
-        <div className="bg-white/70  border-[3px] border-dashed border-gray-400 w-[50rem] h-[25rem] py-8  flex flex-col items-center">
+        <div className="bg-gray-50 border-[1px] border-dashed border-gray-300 w-[50rem] h-[25rem] py-8  flex flex-col items-center">
             {urlSuccess ? (
                 <div className="flex flex-col items-center justify-between w-full h-full">
                     <img src={uploadedImages} alt="uploaded image" className="w-[15rem] h-[15rem]" />

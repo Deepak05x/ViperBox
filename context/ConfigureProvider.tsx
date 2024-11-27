@@ -14,6 +14,12 @@ interface ConfigureContextType {
     setUploadedImages: React.Dispatch<React.SetStateAction<string>>;
     urlSuccess: boolean;
     setUrlSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+    colorName: string;
+    colorType: string;
+    phoneModel: string;
+    setColorName: React.Dispatch<React.SetStateAction<string>>;
+    setColorType: React.Dispatch<React.SetStateAction<string>>;
+    setPhoneModel: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const InitialValues: ConfigureContextType = {
@@ -27,6 +33,12 @@ const InitialValues: ConfigureContextType = {
     setUploadedImages: () => {},
     urlSuccess: false,
     setUrlSuccess: () => {},
+    colorName: "",
+    colorType: "",
+    phoneModel: "",
+    setColorName: () => {},
+    setColorType: () => {},
+    setPhoneModel: () => {},
 };
 
 export const ConfigureContext = createContext<ConfigureContextType>(InitialValues);
@@ -37,10 +49,30 @@ const ConfigureProvider = ({ children }: { children: React.ReactNode }) => {
     const [reviewSuccess, setReviewSuccess] = useState<boolean>(false);
     const [urlSuccess, setUrlSuccess] = useState<boolean>(false);
     const [uploadedImages, setUploadedImages] = useState<string>("");
+    const [colorName, setColorName] = useState<string>("Black");
+    const [colorType, setColorType] = useState<string>("bg-black");
+    const [phoneModel, setPhoneModel] = useState<string>("IPhone 15");
 
     return (
         <ConfigureContext.Provider
-            value={{ urlSuccess, setUrlSuccess, uploadedImages, setUploadedImages, uploadSuccess, setUploadSuccess, customizeSuccess, setCustomizeSuccess, reviewSuccess, setReviewSuccess }}
+            value={{
+                colorName,
+                setColorName,
+                colorType,
+                setColorType,
+                phoneModel,
+                setPhoneModel,
+                urlSuccess,
+                setUrlSuccess,
+                uploadedImages,
+                setUploadedImages,
+                uploadSuccess,
+                setUploadSuccess,
+                customizeSuccess,
+                setCustomizeSuccess,
+                reviewSuccess,
+                setReviewSuccess,
+            }}
         >
             {children}
         </ConfigureContext.Provider>

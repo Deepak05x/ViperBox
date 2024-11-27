@@ -1,9 +1,6 @@
 "use client";
 
 import React from "react";
-import { FaCloudUploadAlt } from "react-icons/fa";
-import { MdDashboardCustomize } from "react-icons/md";
-import { MdOutlineRateReview } from "react-icons/md";
 import { ArrowRight } from "lucide-react";
 import { ConfigureContext } from "@/context/ConfigureProvider";
 import { useContext } from "react";
@@ -16,7 +13,7 @@ const Steps = () => {
             title: "Upload Image",
             desc: "Upload Your Custom Images",
             url: "/upload",
-            icon: <FaCloudUploadAlt />,
+            icon: "/upload.svg",
             arrow: <ArrowRight />,
             key: uploadSuccess,
         },
@@ -24,7 +21,7 @@ const Steps = () => {
             title: "Customize",
             desc: "Customize Your Phone Case",
             url: "/design",
-            icon: <MdDashboardCustomize />,
+            icon: "/customize.svg",
             arrow: <ArrowRight />,
             key: customizeSuccess,
         },
@@ -32,21 +29,23 @@ const Steps = () => {
             title: "Review",
             desc: "Review Your Customization",
             url: "/review",
-            icon: <MdOutlineRateReview />,
+            icon: "/view2.svg",
             key: reviewSuccess,
         },
     ];
 
     return (
-        <section className="flex flex-row items-center w-full justify-center gap-12">
+        <section className="flex flex-row items-center w-full justify-center gap-8">
             {steps.map((item, index) => (
-                <div key={index} className="flex flex-row items-center">
-                    <div className="ring ring-black flex flex-row gap-4 items-center px-4 py-2">
-                        <p className="text-xl">{item.icon}</p>
+                <div className="flex flex-row items-center gap-8" key={index}>
+                    <div className={`flex flex-row items-center ${item.key ? "border-green border-b-[3px]" : "border-gray-300"} border-[1px] gap-1 px-8 py-4 text-sm`}>
+                        <div className="flex flex-row gap-4 items-center px-4 py-2">
+                            <img src={item.icon} className="w-[2rem] h-[2rem]" />
 
-                        <div className={`flex flex-col ${item.key ? "text-green" : "text-black"}`}>
-                            <p>{item.title}</p>
-                            <p>{item.desc}</p>
+                            <div className="flex flex-col gap-1">
+                                <p>{item.title}</p>
+                                <p>{item.desc}</p>
+                            </div>
                         </div>
                     </div>
                     <p>{item.arrow}</p>
