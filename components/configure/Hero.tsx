@@ -1,47 +1,23 @@
 "use client";
 
-import React from "react";
-import { useContext, useState } from "react";
-import { CreateContext } from "@/context/CreateProvider";
-import dynamic from "next/dynamic";
-import { ConfigureContext } from "@/context/ConfigureProvider";
-import { Button } from "../ui/button";
-import { IoMdArrowDropdown } from "react-icons/io";
-import { getCroppedImg } from "./CropImages";
+import React, { useEffect, useState, useContext } from "react";
 import { Area } from "react-easy-crop";
 import Cropper from "react-easy-crop";
+import dynamic from "next/dynamic";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { Button } from "../ui/button";
+import { ConfigureContext } from "@/context/ConfigureProvider";
+import { getCroppedImg } from "./CropImages";
 
 const Phone = dynamic(() => import("../Phone"));
 
 const colors = [
-    {
-        name: "Black",
-        color: "bg-black",
-    },
-    {
-        name: "Red",
-        color: "bg-red-900",
-    },
-    {
-        name: "Blue",
-        color: "bg-indigo-900",
-    },
+    { name: "Black", color: "bg-black", hex: "#000000" },
+    { name: "Red", color: "bg-red-900", hex: "#7F1D1D" },
+    { name: "Blue", color: "bg-indigo-900", hex: "#312E81" },
 ];
 
-const phones = [
-    {
-        name: "IPhone",
-    },
-    {
-        name: "Samsung",
-    },
-    {
-        name: "Realme",
-    },
-    {
-        name: "Pixel",
-    },
-];
+const phones = [{ name: "IPhone" }, { name: "Samsung" }, { name: "Realme" }, { name: "Pixel" }];
 
 const materials = [
     {
@@ -70,23 +46,18 @@ const finishes = [
 ];
 
 const Hero: React.FC = () => {
-    const { colorName, setColorName, colorType, setColorType, phoneModel, setPhoneModel, uploadedImages, setUploadedImages } = useContext(ConfigureContext);
+    const { colorType, colorName, setColorName, setColorType, phoneModel, setPhoneModel, uploadedImages, setUploadedImages } = useContext(ConfigureContext);
+
+    const [crop, setCrop] = useState({ x: 0, y: 0 });
+    const [zoom, setZoom] = useState(1);
+    const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
+    const [croppedImage, setCroppedImage] = useState<string | null>(null);
+    const [drop, setDrop] = useState<boolean>(false);
 
     const handleColorClick = (name: string, type: string): void => {
         setColorName(name);
         setColorType(type);
     };
-
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
-    const [activeFinish, setActiveFinish] = useState<number | null>(null);
-    const [drop, setDrop] = useState<boolean>(false);
-    const [previousMaterial, setPreviousMaterial] = useState<number>(0);
-    const [previousFinish, setPreviousFinish] = useState<number>(0);
-
-    const [crop, setCrop] = useState({ x: 0, y: 0 });
-    const [zoom, setZoom] = useState(1);
-    const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
-    const [croppedImage, setCroppedImage] = useState<string | null>(null);
 
     const handleDropDown = (): void => {
         setDrop((prev) => !prev);
@@ -97,17 +68,18 @@ const Hero: React.FC = () => {
         setDrop(false);
     };
 
-    const onCropComplete = (croppedArea: any, croppedAreaPixels: any) => {
+    const onCropComplete = (croppedArea: Area, croppedAreaPixels: Area) => {
         setCroppedAreaPixels(croppedAreaPixels);
     };
 
     const handleCrop = async () => {
         try {
-            const croppedImage = await getCroppedImg(uploadedImages, croppedAreaPixels);
-            setCroppedImage(croppedImage);
-            setUploadedImages(croppedImage);
-        } catch (e) {
-            console.error(e);
+            const selectedColor = colors.find((color) => color.color === colorType)?.hex || "#ffffff";
+            const croppedImg = await getCroppedImg(uploadedImages, croppedAreaPixels!, selectedColor);
+            setCroppedImage(croppedImg);
+            setUploadedImages(croppedImg);
+        } catch (error) {
+            console.error("Failed to crop the image:", error);
         }
     };
 
@@ -117,12 +89,12 @@ const Hero: React.FC = () => {
                 {!croppedImage ? (
                     <div className="relative w-60 h-60">
                         <Cropper image={uploadedImages} crop={crop} zoom={zoom} aspect={9 / 16} onCropChange={setCrop} onZoomChange={setZoom} onCropComplete={onCropComplete} />
-                        <Button onClick={handleCrop} className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+                        <Button onClick={handleCrop} className="absolute -bottom-16 left-1/2 transform -translate-x-1/2">
                             Apply Crop
                         </Button>
                     </div>
                 ) : (
-                    <Phone imgSrc={croppedImage} className={`w-60 order-1`} />
+                    <Phone imgSrc={croppedImage} className={`w-60 order-1 ${colorType}`} />
                 )}
             </section>
             <section className="flex  flex-col overflow-y-auto items-start  h-full px-12 py-4 gap-8 ">
@@ -166,7 +138,7 @@ const Hero: React.FC = () => {
                     <p>Material</p>
                     <div className="flex flex-col text-sm gap-4">
                         {materials.map((item, index) => (
-                            <div key={index} className={`border-2 ${activeIndex === index ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}>
+                            <div key={index} className={`border-2  rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}>
                                 {item.name} <span>{item.cost}</span>
                             </div>
                         ))}
@@ -177,10 +149,7 @@ const Hero: React.FC = () => {
                     <p>Finish</p>
                     <div className="flex flex-col text-sm gap-4">
                         {finishes.map((item, index) => (
-                            <div
-                                key={index}
-                                className={`border-2 ${activeFinish === index ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}
-                            >
+                            <div key={index} className={`border-2  rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}>
                                 {item.name} <span>{item.cost}</span>
                             </div>
                         ))}
