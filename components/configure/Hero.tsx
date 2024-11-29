@@ -8,6 +8,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { Button } from "../ui/button";
 import { ConfigureContext } from "@/context/ConfigureProvider";
 import { getCroppedImg } from "./CropImages";
+import Link from "next/link";
 
 const Phone = dynamic(() => import("../Phone"));
 
@@ -46,17 +47,24 @@ const finishes = [
 ];
 
 const Hero: React.FC = () => {
-    const { colorType, colorName, setColorName, setColorType, phoneModel, setPhoneModel, uploadedImages, setUploadedImages } = useContext(ConfigureContext);
+    const { setCustomizeSuccess, cost, setCost, colorType, colorName, setColorName, setColorType, phoneModel, setPhoneModel, uploadedImages, setUploadedImages, setMaterial, setFinish } =
+        useContext(ConfigureContext);
 
     const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(1);
     const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
     const [croppedImage, setCroppedImage] = useState<string | null>(null);
     const [drop, setDrop] = useState<boolean>(false);
+    const [colorIndex, setColorIndex] = useState<number | null>(null);
+    const [materialIndex, setMaterialIndex] = useState<number | null>(null);
+    const [materialCost, setMaterialCost] = useState<number>(0);
+    const [finishCost, setFinishCost] = useState<number>(0);
+    const [finishIndex, setFinishIndex] = useState<number | null>(null);
 
-    const handleColorClick = (name: string, type: string): void => {
+    const handleColorClick = (name: string, type: string, index: number): void => {
         setColorName(name);
         setColorType(type);
+        setColorIndex(index);
     };
 
     const handleDropDown = (): void => {
@@ -83,18 +91,38 @@ const Hero: React.FC = () => {
         }
     };
 
+    const handleMaterialClick = (name: string, index: number, cost: number) => {
+        setMaterial(name);
+        setMaterialIndex(index);
+        setMaterialCost(cost);
+    };
+
+    const handleFinishClick = (name: string, index: number, cost: number) => {
+        setFinish(name);
+        setFinishIndex(index);
+        setFinishCost(cost);
+    };
+
+    useEffect(() => {
+        setCost(materialCost + finishCost);
+    }, [materialCost, finishCost]);
+
     return (
         <section className="flex flex-row w-full items-center  justify-center h-[80vh]">
             <section className="bg-gray-50 h-full flex flex-col gap-12 items-center justify-center xl:px-[13rem] lg:px-[10rem] py-8 border-2 border-dashed border-gray-300 rounded-xl">
                 {!croppedImage ? (
                     <div className="relative w-60 h-60">
                         <Cropper image={uploadedImages} crop={crop} zoom={zoom} aspect={9 / 16} onCropChange={setCrop} onZoomChange={setZoom} onCropComplete={onCropComplete} />
-                        <Button onClick={handleCrop} className="absolute -bottom-16 left-1/2 transform -translate-x-1/2">
-                            Apply Crop
-                        </Button>
+                        <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
+                            {/* Zoom control slider */}
+                            <input type="range" min={1} max={3} step={0.1} value={zoom} onChange={(e) => setZoom(Number(e.target.value))} className="w-40" />
+                            <Button onClick={handleCrop} className="mt-2">
+                                Apply Crop
+                            </Button>
+                        </div>
                     </div>
                 ) : (
-                    <Phone imgSrc={croppedImage} className={`w-60 order-1 ${colorType}`} />
+                    <Phone imgSrc={croppedImage} className={`w-60 order-1`} />
                 )}
             </section>
             <section className="flex  flex-col overflow-y-auto items-start  h-full px-12 py-4 gap-8 ">
@@ -106,8 +134,10 @@ const Hero: React.FC = () => {
                         {colors.map((item, index) => (
                             <div
                                 key={index}
-                                onClick={() => handleColorClick(item.name, item.color)}
-                                className={`${item.color} w-[1.5rem] h-[1.5rem] rounded-full cursor-pointer hover:scale-105 transition ease-in-out`}
+                                onClick={() => handleColorClick(item.name, item.color, index)}
+                                className={`${item.color} ${
+                                    colorIndex === index ? "outline-dashed outline-1" : ""
+                                } w-[1.5rem] h-[1.5rem] rounded-full cursor-pointer hover:scale-105 transition ease-in-out`}
                             ></div>
                         ))}
                     </div>
@@ -138,7 +168,11 @@ const Hero: React.FC = () => {
                     <p>Material</p>
                     <div className="flex flex-col text-sm gap-4">
                         {materials.map((item, index) => (
-                            <div key={index} className={`border-2  rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}>
+                            <div
+                                key={index}
+                                className={`border-2 ${materialIndex === index ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}
+                                onClick={() => handleMaterialClick(item.name, index, item.price)}
+                            >
                                 {item.name} <span>{item.cost}</span>
                             </div>
                         ))}
@@ -149,7 +183,11 @@ const Hero: React.FC = () => {
                     <p>Finish</p>
                     <div className="flex flex-col text-sm gap-4">
                         {finishes.map((item, index) => (
-                            <div key={index} className={`border-2  rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}>
+                            <div
+                                key={index}
+                                className={`border-2 ${finishIndex === index ? "border-green" : "border-gray-200"} rounded-lg p-4 flex items-center justify-between hover:cursor-pointer`}
+                                onClick={() => handleFinishClick(item.name, index, item.price)}
+                            >
                                 {item.name} <span>{item.cost}</span>
                             </div>
                         ))}
@@ -157,8 +195,10 @@ const Hero: React.FC = () => {
                 </div>
                 <div className="w-full bg-gray-500 h-[1px]">&nbsp;</div>
                 <div className="flex items-center justify-between w-full font-bold">
-                    <p>$ 20.00</p>
-                    <Button>Continue</Button>
+                    <p>$ {cost}.00</p>
+                    <Link href={"/configure/review"}>
+                        <Button onClick={() => setCustomizeSuccess(true)}>Continue</Button>
+                    </Link>
                 </div>
             </section>
         </section>

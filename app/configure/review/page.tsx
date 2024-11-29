@@ -1,7 +1,9 @@
-import React from "react";
+import dynamic from "next/dynamic";
+
+const Review = dynamic(() => import("@/components/configure/Review"));
 
 const review = () => {
-    return <div></div>;
+    return <Review />;
 };
 
 export default review;

@@ -20,6 +20,12 @@ interface ConfigureContextType {
     setColorName: React.Dispatch<React.SetStateAction<string>>;
     setColorType: React.Dispatch<React.SetStateAction<string>>;
     setPhoneModel: React.Dispatch<React.SetStateAction<string>>;
+    material: string;
+    finish: string;
+    setMaterial: React.Dispatch<React.SetStateAction<string>>;
+    setFinish: React.Dispatch<React.SetStateAction<string>>;
+    cost: number;
+    setCost: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const InitialValues: ConfigureContextType = {
@@ -39,6 +45,12 @@ const InitialValues: ConfigureContextType = {
     setColorName: () => {},
     setColorType: () => {},
     setPhoneModel: () => {},
+    material: "",
+    finish: "",
+    setMaterial: () => {},
+    setFinish: () => {},
+    cost: 0,
+    setCost: () => {},
 };
 
 export const ConfigureContext = createContext<ConfigureContextType>(InitialValues);
@@ -52,10 +64,19 @@ const ConfigureProvider = ({ children }: { children: React.ReactNode }) => {
     const [colorName, setColorName] = useState<string>("Black");
     const [colorType, setColorType] = useState<string>("bg-black");
     const [phoneModel, setPhoneModel] = useState<string>("IPhone 15");
+    const [material, setMaterial] = useState<string>("");
+    const [finish, setFinish] = useState<string>("");
+    const [cost, setCost] = useState<number>(0);
 
     return (
         <ConfigureContext.Provider
             value={{
+                cost,
+                setCost,
+                material,
+                setMaterial,
+                finish,
+                setFinish,
                 colorName,
                 setColorName,
                 colorType,
