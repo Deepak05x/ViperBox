@@ -84,7 +84,8 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
                     email : user.email,
                     image: user.image,
                     provider: account?.provider,
-                    providerId: account?.providerAccountId 
+                    providerId: account?.providerAccountId,
+                    products: [] 
                 })
             }
             return true

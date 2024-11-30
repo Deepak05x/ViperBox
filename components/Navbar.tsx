@@ -16,6 +16,8 @@ const Logo = dynamic(() => import("@/components/Logo"));
 const Navbar: React.FC = () => {
     const { session, handleLogout } = useContext(SessionContext);
 
+    console.log(session);
+
     const [menu, setMenu] = useState<boolean>(false);
 
     const handleToggle = (): void => {
