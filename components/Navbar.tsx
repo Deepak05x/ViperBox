@@ -47,10 +47,10 @@ const Navbar: React.FC = () => {
                         <Button onClick={handleLogout} variant={"destructive"}>
                             Sign out
                         </Button>
-                        <p className="cursor-pointer flex items-center gap-1">
+                        <Link href={"/dashboard"} className="cursor-pointer flex items-center gap-1">
                             Dashboard
                             <PiShootingStarFill className="text-yellow-500" />
-                        </p>
+                        </Link>
                         <Link href={"/create"}>
                             <Button className="flex items-center gap-1 justify-center">
                                 <p>Create Case</p>

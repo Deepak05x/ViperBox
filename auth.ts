@@ -85,7 +85,6 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
                     image: user.image,
                     provider: account?.provider,
                     providerId: account?.providerAccountId,
-                    products: [] 
                 })
             }
             return true
@@ -99,7 +98,7 @@ export const { handlers : {GET, POST}, signIn, signOut, auth} = NextAuth({
                 console.warn("User not found in the database");
             }
         }
-        console.log("Session object:", session); // Add this to debug the session content
+        console.log("Session object:", session); 
         return session;
     }     
     }

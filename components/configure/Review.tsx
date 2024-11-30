@@ -26,23 +26,19 @@ const Review = () => {
             link.download = "phone-customized-image.png";
             link.click();
 
-            const productData = {
-                productName: "Phone",
-                materialName: material,
-                modelName: phoneModel,
-                productColor: colorName,
-                image: image,
-            };
-
             try {
                 const res = await fetch("/api/configure", {
-                    method: "PUT",
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
                         id: session?.id,
-                        productData: [productData],
+                        productName: "Phone",
+                        materialName: material,
+                        modelName: phoneModel,
+                        productColor: colorName,
+                        image: image,
                     }),
                 });
                 if (res.ok) {
@@ -50,7 +46,7 @@ const Review = () => {
                     setReviewSuccess(true);
                     router.push("/");
                 } else {
-                    console.log("Eroorin uploading");
+                    console.log("Error in uploading");
                 }
             } catch (error) {
                 console.log(error);

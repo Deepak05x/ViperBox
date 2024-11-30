@@ -1,29 +1,31 @@
 import { NextResponse } from 'next/server';
 import connectToDb from "@/lib/db";
 import UserModel from "@/models/UserModel";
+import ProductModel from '@/models/ProductModel';
 
-export const PUT = async (req: Request) => {
+export const POST = async (req: Request) => {
   try {
-    const { id, productData } = await req.json(); 
-
-    if (!id || !productData) {
-      return NextResponse.json({ error: "Invalid request data" }, { status: 400 });
-    }
-    await connectToDb();
-    const updatedUser = await UserModel.findByIdAndUpdate(
-      id,
-      {
-        $push: { products: { $each: productData } },
-      },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-
+    const { id, productName, materialName, modelName, productColor, image} = await req.json(); 
     
-    return NextResponse.json({ message: "Product added successfully", updatedUser }, { status: 200 });
+    await connectToDb();
+
+    const user = await UserModel.findById(id)
+
+    if(!user){
+      return NextResponse.json({error: "User not found"},{status: 404})
+    }
+
+
+    const newProduct = await ProductModel.create({ 
+        productName,
+        materialName,
+        modelName,
+        productColor,
+        image,
+        user: id,
+      })
+
+      return NextResponse.json({message: "Product Created Successfully", product: newProduct})
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
