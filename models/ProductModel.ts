@@ -36,6 +36,7 @@ const ProductSchema = new Schema<Product>({
     ref: "User",
     required: true
   }
+  
 });
 
 const ProductModel : Model<Product> = models.Product || model<Product>("Product", ProductSchema)

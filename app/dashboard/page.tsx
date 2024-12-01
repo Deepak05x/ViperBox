@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { SessionContext } from "@/context/SessionProvider";
 import { Product } from "@/models/ProductModel";
 import dynamic from "next/dynamic";
+import { ObjectId } from "mongoose";
 
 const Navbar = dynamic(() => import("@/components/Navbar"));
 
@@ -27,14 +28,15 @@ const Dashboard = () => {
                 },
                 body: JSON.stringify({ id }),
             });
-            if (res.ok) {
-                console.log("deleted");
+            if (res.status === 200) {
+                window.location.reload();
             }
         } catch (error) {
             console.log(error);
         }
     };
 
+    console.log(filteredProducts);
     console.log(filteredProducts);
 
     return (
@@ -45,7 +47,7 @@ const Dashboard = () => {
                     {item.productName}
                     {item.productColor}
                     <img src={item.image} />
-                    <button onClick={() => handleDelete(item.id)}>Click me</button>
+                    <button onClick={() => handleDelete(item._id.toString())}>Click me</button>
                 </div>
             ))}
         </div>

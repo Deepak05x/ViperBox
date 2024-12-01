@@ -10,7 +10,6 @@ interface User {
     id: string;
     image?: string;
     name: string;
-    products: [];
 }
 
 interface SessionData {
@@ -23,7 +22,6 @@ interface Session {
     username: string;
     image?: string;
     email: string;
-    products: [];
 }
 
 const IntitialValues: SessionContextType = {
@@ -60,7 +58,6 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
                     image: sessionData.user.image || undefined,
                     id: sessionData.user.id,
                     email: sessionData.user.email,
-                    products: sessionData.user.products,
                 };
                 setSession(session);
             } else {
