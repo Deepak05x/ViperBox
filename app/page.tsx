@@ -1,12 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Navbar = dynamic(() => import("../components/Navbar"));
-const Title = dynamic(() => import("../components/home/Title"));
-const Customer = dynamic(() => import("../components/home/Customer"));
-const Working = dynamic(() => import("../components/home/Working"));
-const Footer = dynamic(() => import("../components/Footer"));
+import Navbar from "../components/Navbar";
+import Title from "../components/home/Title";
+import Customer from "../components/home/Customer";
+import Working from "../components/home/Working";
+import Footer from "../components/Footer";
 
 const Home: React.FC = () => {
     return (
