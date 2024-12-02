@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 
-const Review = dynamic(() => import("@/components/configure/Review"));
+const Review = dynamic(() => import("../../../components/Review"));
 
 const ReviewPage = () => {
     return <Review />;

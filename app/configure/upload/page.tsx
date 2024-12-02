@@ -13,6 +13,7 @@ const UploadPage: React.FC = () => {
 
     const { setUploadSuccess, setUploadedImages, uploadedImages, urlSuccess, setUrlSuccess } = useContext(ConfigureContext);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onUploadComplete = async (result: any): Promise<void> => {
         try {
             const url = await result?.info?.secure_url;

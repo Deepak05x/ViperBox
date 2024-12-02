@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 
 const Navbar = dynamic(() => import("@/components/Navbar"));
 const Footer = dynamic(() => import("@/components/Footer"));
-const Steps = dynamic(() => import("@/components/configure/Steps"));
+const Steps = dynamic(() => import("../../components/Steps"));
 
 const layout = ({ children }: { children: React.ReactNode }) => {
     return (
