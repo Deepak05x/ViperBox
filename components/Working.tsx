@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 import { FaArrowRight } from "react-icons/fa";
 import { useContext } from "react";
 import { SessionContext } from "@/context/SessionProvider";
