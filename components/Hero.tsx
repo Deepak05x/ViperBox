@@ -5,12 +5,12 @@ import { Area } from "react-easy-crop";
 import Cropper from "react-easy-crop";
 import dynamic from "next/dynamic";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 import { ConfigureContext } from "@/context/ConfigureProvider";
 import { getCroppedImg } from "./CropImages";
 import Link from "next/link";
 
-const Phone = dynamic(() => import("../Phone"));
+const Phone = dynamic(() => import("./Phone"));
 
 const colors = [
     { name: "Black", color: "bg-black", hex: "#000000" },
@@ -105,7 +105,7 @@ const Hero: React.FC = () => {
 
     useEffect(() => {
         setCost(materialCost + finishCost);
-    }, [materialCost, finishCost]);
+    }, [materialCost, finishCost, setCost]);
 
     return (
         <section className="flex flex-row w-full items-center  justify-center h-[80vh]">

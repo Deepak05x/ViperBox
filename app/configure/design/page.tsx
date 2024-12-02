@@ -1,9 +1,9 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-const Hero = dynamic(() => import("@/components/configure/Hero"));
+const Hero = dynamic(() => import("@/components/Hero"));
 
-const design = () => {
+const DesignPage = () => {
     return (
         <div>
             <Hero />
@@ -11,4 +11,4 @@ const design = () => {
     );
 };
 
-export default design;
+export default DesignPage;

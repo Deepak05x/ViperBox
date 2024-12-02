@@ -4,6 +4,7 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { ConfigureContext } from "@/context/ConfigureProvider";
 import { useContext } from "react";
+import Image from "next/image";
 
 const Steps = () => {
     const { uploadSuccess, customizeSuccess, reviewSuccess } = useContext(ConfigureContext);
@@ -40,7 +41,7 @@ const Steps = () => {
                 <div className="flex flex-row items-center gap-8" key={index}>
                     <div className={`flex flex-row items-center ${item.key ? "border-green border-b-[3px]" : "border-gray-300"} border-[1px] gap-1 px-8 py-4 text-sm`}>
                         <div className="flex flex-row gap-4 items-center px-4 py-2">
-                            <img src={item.icon} className="w-[2rem] h-[2rem]" />
+                            <Image alt="icon" src={item.icon} className="w-[2rem] h-[2rem]" />
 
                             <div className="flex flex-col gap-1">
                                 <p>{item.title}</p>

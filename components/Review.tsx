@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ConfigureContext } from "@/context/ConfigureProvider";
 import dynamic from "next/dynamic";
 import html2canvas from "html2canvas";
@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 const Phone = dynamic(() => import("@/components/Phone"));
 
 const Review = () => {
-    const { uploadedImages, colorName, phoneModel, material, finish, setReviewSuccess } = useContext(ConfigureContext);
+    const { uploadedImages, colorName, phoneModel, material, setReviewSuccess } = useContext(ConfigureContext);
     const { session } = useContext(SessionContext);
 
     const router = useRouter();

@@ -5,7 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { SessionContext } from "@/context/SessionProvider";
 import { Product } from "@/models/ProductModel";
 import dynamic from "next/dynamic";
-import { ObjectId } from "mongoose";
+import Image from "next/image";
 
 const Navbar = dynamic(() => import("@/components/Navbar"));
 
@@ -43,10 +43,10 @@ const Dashboard = () => {
         <div className="flex flex-col">
             <Navbar />
             {filteredProducts?.map((item, index) => (
-                <div>
+                <div key={index}>
                     {item.productName}
                     {item.productColor}
-                    <img src={item.image} />
+                    <Image alt="phone" src={item.image} className="w-[5rem] h-[5rem]" />
                     <button onClick={() => handleDelete(item._id.toString())}>Click me</button>
                 </div>
             ))}

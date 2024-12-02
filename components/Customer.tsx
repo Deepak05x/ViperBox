@@ -34,8 +34,8 @@ const Customer = () => {
                         <TbStarFilled />
                     </div>
                     <div className="md:max-w-[70%] max-w-[90%]  text-center font-medium">
-                        "Ive always wanted a phone case that reflects my personal style, and Viper Box made that possible. The design tool was intuitive and fun to use, letting me add my own artwork
-                        and choose colors that match my vibe.
+                        &quot;Ive always wanted a phone case that reflects my personal style, and Viper Box made that possible. The design tool was intuitive and fun to use, letting me add my own
+                        artwork and choose colors that match my vibe.
                     </div>
                     <div className="flex gap-4 items-center">
                         <Image src={"/user-3.png"} alt="user-3" width={50} height={50} className="rounded-full" />
@@ -63,7 +63,7 @@ const Customer = () => {
                         <TbStarFilled />
                     </div>
                     <div className="md:max-w-[70%] max-w-[90%] text-center font-medium">
-                        "Creating my own phone case with Viper Box was an amazing experience! The platform is incredibly easy to navigate, allowing me to upload my favorite images and customize
+                        &quot;Creating my own phone case with Viper Box was an amazing experience! The platform is incredibly easy to navigate, allowing me to upload my favorite images and customize
                         everything just the way I wanted
                     </div>
                     <div className="flex gap-4 items-center">

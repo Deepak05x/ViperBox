@@ -2,13 +2,13 @@
 
 import React from "react";
 import { CldUploadWidget } from "next-cloudinary";
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { ConfigureContext } from "@/context/ConfigureProvider";
 import { useContext } from "react";
+import Image from "next/image";
 
-const upload: React.FC = () => {
+const UploadPage: React.FC = () => {
     const router = useRouter();
 
     const { setUploadSuccess, setUploadedImages, uploadedImages, urlSuccess, setUrlSuccess } = useContext(ConfigureContext);
@@ -40,7 +40,7 @@ const upload: React.FC = () => {
         <div className="bg-gray-50 border-[1px] border-dashed border-gray-300 w-[50rem] h-[25rem] py-8  flex flex-col items-center">
             {urlSuccess ? (
                 <div className="flex flex-col items-center justify-between w-full h-full">
-                    <img src={uploadedImages} alt="uploaded image" className="w-[15rem] h-[15rem]" />
+                    <Image src={uploadedImages} alt="uploaded image" className="w-[15rem] h-[15rem]" />
                     <div className="flex flex-row items-center gap-4">
                         <Button onClick={() => onDeleteImage()}>Delete</Button>
                         <Button onClick={() => onSubmitComplete()}>Upload</Button>
@@ -63,4 +63,4 @@ const upload: React.FC = () => {
     );
 };
 
-export default upload;
+export default UploadPage;

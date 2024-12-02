@@ -94,7 +94,7 @@ const Login: React.FC = () => {
             </motion.form>
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 0.8, ease: "easeInOut" }} viewport={{ once: true }}>
                 <p className="text-lg flex md:flex-row flex-col gap-4 items-center">
-                    Don't have an account?{" "}
+                    Don&apos;t have an account?{" "}
                     <Link href={"/register"}>
                         <Button>Sign up</Button>
                     </Link>
