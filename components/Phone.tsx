@@ -7,10 +7,10 @@ interface PhoneProps extends HTMLAttributes<HTMLDivElement> {
 
 const Phone = ({ imgSrc, className, ...props }: PhoneProps) => {
     return (
-        <div className={`relative pointer-events-none z-50 overflow-hidden ${className}`} {...props}>
-            <Image alt="phone" src="/phone-template-white-edges.png" className="pointer-events-none z-50 select-none" />
+        <div className={`relative pointer-events-none z-50  overflow-hidden ${className}`} {...props}>
+            <Image alt="phone" src="/phone-template-white-edges.png" width={500} height={500} className="pointer-events-none z-50 select-none w-60" />
             <div className="absolute -z-10 inset-0">
-                <Image className="object-cover min-w-full min-h-full" src={imgSrc} alt="" />
+                <Image src={imgSrc} alt="overlaying phone image" layout="fill" objectFit="cover" />
             </div>
         </div>
     );

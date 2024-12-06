@@ -38,7 +38,7 @@ const Working = () => {
                     <Image src={"/arrow.png"} alt="arrow" width={100} height={100} className="lg:rotate-0 rotate-90" />
                 </motion.div>
                 <motion.div initial={{ opacity: 0 }} viewport={{ once: true }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8, ease: "easeInOut", delay: 0.4 }}>
-                    <Phone imgSrc="/horse_phone.jpg" className="rounded-lg w-60" />
+                    <Phone imgSrc="/horse_phone.jpg" />
                 </motion.div>
             </div>
             <motion.div initial={{ opacity: 0 }} viewport={{ once: true }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }} className="flex flex-col gap-2">
