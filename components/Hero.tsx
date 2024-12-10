@@ -108,8 +108,8 @@ const Hero: React.FC = () => {
     }, [materialCost, finishCost, setCost]);
 
     return (
-        <section className="flex flex-row w-full items-center  justify-center h-[80vh]">
-            <section className="bg-gray-50 h-full flex flex-col gap-12 items-center justify-center xl:px-[13rem] lg:px-[10rem] py-8 border-2 border-dashed border-gray-300 rounded-xl">
+        <section className="flex lg:flex-row flex-col w-full items-center lg:gap-0 gap-12 justify-center lg:h-[80vh] h-full">
+            <section className="bg-gray-50 h-full flex flex-col gap-12 items-center justify-center xl:px-[13rem] lg:px-[10rem] md:px-[8rem] sm:px-[5rem] ssm:px-[2rem] py-8 border-2 border-dashed border-gray-300 rounded-xl">
                 {!croppedImage ? (
                     <div className="relative w-60 h-60">
                         <Cropper image={uploadedImages} crop={crop} zoom={zoom} aspect={9 / 16} onCropChange={setCrop} onZoomChange={setZoom} onCropComplete={onCropComplete} />
@@ -125,8 +125,8 @@ const Hero: React.FC = () => {
                     <Phone imgSrc={croppedImage} className={`w-60 order-1`} />
                 )}
             </section>
-            <section className="flex  flex-col overflow-y-auto items-start  h-full px-12 py-4 gap-8 ">
-                <h1 className="text-2xl font-bold">Customize your case</h1>
+            <section className="flex  flex-col overflow-y-auto lg:items-start items-center  h-full px-12 py-4 gap-8 ">
+                <h1 className="text-2xl font-bold text-center">Customize your case</h1>
                 <div className="w-full bg-gray-500 h-[1px]"></div>
                 <div className="flex flex-col gap-4 font-bold">
                     <p>Color: {colorName}</p>
@@ -144,7 +144,7 @@ const Hero: React.FC = () => {
                 </div>
                 <div className="w-full bg-gray-500 h-[1px]">&nbsp;</div>
                 <div className="flex flex-col gap-4 font-bold w-full">
-                    <p>Model</p>
+                    <p className="lg:text-start text-center">Model</p>
                     <div className="relative">
                         <div onClick={() => handleDropDown()} className="border-2  border-gray-200 rounded-lg text-sm px-4 py-2 cursor-pointer w-full flex items-center justify-between">
                             <span className="flex flex-row items-center justify-between w-full">
@@ -165,7 +165,7 @@ const Hero: React.FC = () => {
                 </div>
                 <div className="w-full bg-gray-500 h-[1px]">&nbsp;</div>
                 <div className="flex flex-col gap-4 w-full font-bold">
-                    <p>Material</p>
+                    <p className="lg:text-start text-center">Material</p>
                     <div className="flex flex-col text-sm gap-4">
                         {materials.map((item, index) => (
                             <div
@@ -180,7 +180,7 @@ const Hero: React.FC = () => {
                 </div>
                 <div className="w-full bg-gray-500 h-[1px]">&nbsp;</div>
                 <div className="flex flex-col gap-4 w-full font-bold">
-                    <p>Finish</p>
+                    <p className="lg:text-start text-center">Finish</p>
                     <div className="flex flex-col text-sm gap-4">
                         {finishes.map((item, index) => (
                             <div

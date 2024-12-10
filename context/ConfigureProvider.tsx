@@ -63,9 +63,9 @@ const ConfigureProvider = ({ children }: { children: React.ReactNode }) => {
     const [uploadedImages, setUploadedImages] = useState<string>("");
     const [colorName, setColorName] = useState<string>("Black");
     const [colorType, setColorType] = useState<string>("bg-black");
-    const [phoneModel, setPhoneModel] = useState<string>("IPhone 15");
-    const [material, setMaterial] = useState<string>("");
-    const [finish, setFinish] = useState<string>("");
+    const [phoneModel, setPhoneModel] = useState<string>("IPhone");
+    const [material, setMaterial] = useState<string>("None");
+    const [finish, setFinish] = useState<string>("None");
     const [cost, setCost] = useState<number>(0);
 
     return (

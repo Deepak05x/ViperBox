@@ -5,9 +5,9 @@ import { useContext, useState, useEffect } from "react";
 import { SessionContext } from "@/context/SessionProvider";
 import { Product } from "@/models/ProductModel";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 
 const Navbar = dynamic(() => import("@/components/Navbar"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 const Dashboard = () => {
     const { products, session } = useContext(SessionContext);
@@ -36,20 +36,21 @@ const Dashboard = () => {
         }
     };
 
-    console.log(filteredProducts);
-    console.log(filteredProducts);
-
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col min-h-screen justify-between">
             <Navbar />
-            {filteredProducts?.map((item, index) => (
-                <div key={index}>
-                    {item.productName}
-                    {item.productColor}
-                    <Image alt="phone" src={item.image} className="w-[5rem] h-[5rem]" />
-                    <button onClick={() => handleDelete(item._id.toString())}>Click me</button>
-                </div>
-            ))}
+            <section className="flex flex-col">
+                {filteredProducts?.map((item, index) => (
+                    <div key={index}>
+                        {item.productName}
+                        {item.productColor}
+                        <img alt="phone" src={item.image} className="w-[5rem] h-[5rem]" />
+                        <button onClick={() => handleDelete(item._id.toString())}>Click me</button>
+                    </div>
+                ))}
+            </section>
+
+            <Footer />
         </div>
     );
 };
