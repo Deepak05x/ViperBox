@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { ConfigureContext } from "@/context/ConfigureProvider";
 import { useContext } from "react";
-import Image from "next/image";
 
 const UploadPage: React.FC = () => {
     const router = useRouter();
@@ -41,7 +40,7 @@ const UploadPage: React.FC = () => {
         <div className="bg-gray-50 border-[1px] border-dashed border-gray-300 w-[50rem] h-[25rem] py-8  flex flex-col items-center">
             {urlSuccess ? (
                 <div className="flex flex-col items-center justify-between w-full h-full">
-                    <Image src={uploadedImages} alt="uploaded image" className="w-[15rem] h-[15rem]" />
+                    <img src={uploadedImages} alt="uploaded image" className="w-[15rem] h-[15rem]" />
                     <div className="flex flex-row items-center gap-4">
                         <Button onClick={() => onDeleteImage()}>Delete</Button>
                         <Button onClick={() => onSubmitComplete()}>Upload</Button>

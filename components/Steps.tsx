@@ -41,7 +41,7 @@ const Steps = () => {
                 <div className="flex flex-row items-center gap-8" key={index}>
                     <div className={`flex flex-row items-center ${item.key ? "border-green border-b-[3px]" : "border-gray-300"} border-[1px] gap-1 px-8 py-4 text-sm`}>
                         <div className="flex flex-row gap-4 items-center px-4 py-2">
-                            <Image alt="icon" src={item.icon} className="w-[2rem] h-[2rem]" />
+                            <Image alt="icon" src={item.icon} width={50} height={50} className="w-[2rem] h-[2rem]" />
 
                             <div className="flex flex-col gap-1">
                                 <p>{item.title}</p>
