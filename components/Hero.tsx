@@ -9,6 +9,7 @@ import { Button } from "./ui/button";
 import { ConfigureContext } from "@/context/ConfigureProvider";
 import { getCroppedImg } from "./CropImages";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const Phone = dynamic(() => import("./Phone"));
 
@@ -108,7 +109,13 @@ const Hero: React.FC = () => {
     }, [materialCost, finishCost, setCost]);
 
     return (
-        <section className="flex lg:flex-row flex-col w-full items-center lg:gap-0 gap-12 justify-center lg:h-[80vh] h-full">
+        <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.4, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            className="flex lg:flex-row flex-col w-full items-center lg:gap-0 gap-12 justify-center lg:h-[80vh] h-full"
+        >
             <section className="bg-gray-50 h-full flex flex-col gap-12 items-center justify-center xl:px-[13rem] lg:px-[10rem] md:px-[8rem] sm:px-[5rem] ssm:px-[2rem] py-8 border-2 border-dashed border-gray-300 rounded-xl">
                 {!croppedImage ? (
                     <div className="relative w-60 h-60">
@@ -201,7 +208,7 @@ const Hero: React.FC = () => {
                     </Link>
                 </div>
             </section>
-        </section>
+        </motion.section>
     );
 };
 

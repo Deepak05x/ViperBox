@@ -9,6 +9,7 @@ import { SessionContext } from "@/context/SessionProvider";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { Loader, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Phone = dynamic(() => import("@/components/Phone"));
 
@@ -29,9 +30,8 @@ const Review = () => {
             link.href = image;
             link.download = "phone-customized-image.png";
             link.click();
-
+            setLoading(true);
             try {
-                setLoading(true);
                 const res = await fetch("/api/configure", {
                     method: "POST",
                     headers: {
@@ -49,6 +49,9 @@ const Review = () => {
                 if (res.ok) {
                     setReviewSuccess(true);
                     router.push("/");
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
                 } else {
                     console.log("Error in uploading");
                 }
@@ -61,7 +64,13 @@ const Review = () => {
     };
 
     return (
-        <section className="flex lg:flex-row flex-col w-full items-center justify-center lg:h-[80vh] h-full lg:gap-0 gap-12">
+        <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.4, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            className="flex lg:flex-row flex-col w-full items-center justify-center lg:h-[80vh] h-full lg:gap-0 gap-12"
+        >
             <section
                 id="download-img"
                 className="bg-gray-50 h-full flex flex-col gap-12 items-center justify-center xl:px-[13rem] lg:px-[10rem] md:px-[8rem] sm:px-[5rem] ssm:px-[2rem] py-8 border-2 border-dashed border-gray-300 rounded-xl"
@@ -101,7 +110,7 @@ const Review = () => {
                     {loading ? "Downloading..." : "Download and Confirm"}
                 </Button>
             </section>
-        </section>
+        </motion.section>
     );
 };
 

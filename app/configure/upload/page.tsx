@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { ConfigureContext } from "@/context/ConfigureProvider";
 import { useContext } from "react";
+import { motion } from "framer-motion";
 
 const UploadPage: React.FC = () => {
     const router = useRouter();
@@ -37,7 +38,13 @@ const UploadPage: React.FC = () => {
     };
 
     return (
-        <div className="bg-gray-50 border-[1px] border-dashed border-gray-300 lg:w-[50rem] lg:h-[25rem] md:w-[40rem] md:h-[20rem] w-[20rem] h-[15rem] py-8  flex flex-col items-center">
+        <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.4, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            className="bg-gray-50 border-[1px] border-dashed border-gray-300 lg:w-[50rem] lg:h-[25rem] md:w-[40rem] md:h-[20rem] w-[20rem] h-[15rem] py-8  flex flex-col items-center"
+        >
             {urlSuccess ? (
                 <div className="flex flex-col items-center justify-between w-full h-full">
                     <img src={uploadedImages} alt="uploaded image" className="lg:w-[15rem] lg:h-[15rem] md:w-[10rem] md:h-[10rem] w-[5rem] h-[5rem]" />
@@ -59,7 +66,7 @@ const UploadPage: React.FC = () => {
                     }}
                 </CldUploadWidget>
             )}
-        </div>
+        </motion.div>
     );
 };
 

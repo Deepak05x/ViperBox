@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { ConfigureContext } from "@/context/ConfigureProvider";
 import { useContext } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Steps = () => {
     const { uploadSuccess, customizeSuccess, reviewSuccess } = useContext(ConfigureContext);
@@ -36,7 +37,13 @@ const Steps = () => {
     ];
 
     return (
-        <section className="flex lg:flex-row flex-col px-8 items-center w-full justify-center gap-8">
+        <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            className="flex lg:flex-row flex-col px-8 items-center w-full justify-center gap-8"
+        >
             {steps.map((item, index) => (
                 <div className="flex lg:flex-row flex-col items-center justify-center gap-8" key={index}>
                     <div className={`flex flex-row items-center  ${item.key ? "border-green border-b-[3px]" : "border-gray-300"} border-[1px] gap-1 px-8 py-4 text-sm`}>
@@ -52,7 +59,7 @@ const Steps = () => {
                     <p className="lg:rotate-0 rotate-90">{item.arrow}</p>
                 </div>
             ))}
-        </section>
+        </motion.section>
     );
 };
 
