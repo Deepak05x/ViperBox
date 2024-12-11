@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { SessionContext } from "@/context/SessionProvider";
 import { Product } from "@/models/ProductModel";
 import dynamic from "next/dynamic";
+import { Trash } from "lucide-react";
 
 const Navbar = dynamic(() => import("@/components/Navbar"));
 const Footer = dynamic(() => import("@/components/Footer"));
@@ -41,11 +42,15 @@ const Dashboard = () => {
             <Navbar />
             <section className="flex flex-col">
                 {filteredProducts?.map((item, index) => (
-                    <div key={index}>
-                        {item.productName}
-                        {item.productColor}
-                        <img alt="phone" src={item.image} className="w-[5rem] h-[5rem]" />
-                        <button onClick={() => handleDelete(item._id.toString())}>Click me</button>
+                    <div key={index} className="flex flex-row items-center">
+                        <img alt="phone" src={item.image} className="w-[10rem] h-[10rem]" />
+                        <div className="flex flex-col items-center">
+                            <p>{item.modelName}</p>
+                            <p>{item.materialName}</p>
+                            <p>{item.productColor}</p>
+
+                            <Trash onClick={() => handleDelete(item._id.toString())}>Click me</Trash>
+                        </div>
                     </div>
                 ))}
             </section>
