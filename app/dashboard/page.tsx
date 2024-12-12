@@ -47,7 +47,7 @@ const Dashboard = () => {
             </h1>
             <section className="flex flex-col items-center gap-8 w-full py-24">
                 {filteredProducts?.map((item, index) => (
-                    <div key={index} className="flex flex-row items-center justify-between border-[2px] w-[25rem] py-4 px-4 border-gray-300 border-dashed gap-8">
+                    <div key={index} className="flex flex-row items-center justify-between border-[2px] w-[30rem] py-4 px-4 border-gray-300 border-dashed gap-8">
                         <img alt="phone" src={item.image} className="w-[10rem] h-[10rem]" />
                         <div className="flex flex-col items-start gap-4 text-green font-bold">
                             <p>
