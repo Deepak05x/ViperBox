@@ -14,6 +14,8 @@ const Footer = dynamic(() => import("@/components/Footer"));
 const Dashboard = () => {
     const { products, session } = useContext(SessionContext);
 
+    console.log(products)
+
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
     useEffect(() => {
